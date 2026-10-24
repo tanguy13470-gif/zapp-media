@@ -1,0 +1,73 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="da.css"><script src="kit.js"></script>
+<style>
+.lined{background-color:var(--bg);background-image:linear-gradient(90deg,transparent 118px,rgba(232,120,160,.35) 118px,rgba(232,120,160,.35) 121px,transparent 121px),repeating-linear-gradient(transparent 0 62px,rgba(120,150,220,.22) 62px 64px)}
+.grid{background-color:var(--bg);background-image:linear-gradient(rgba(150,140,200,.16) 2px,transparent 2px),linear-gradient(90deg,rgba(150,140,200,.16) 2px,transparent 2px);background-size:54px 54px}
+.holes{position:absolute;left:34px;top:0;bottom:0;width:40px;display:flex;flex-direction:column;justify-content:space-around;padding:60px 0}
+.holes i{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:inset 0 3px 4px rgba(0,0,0,.12)}
+.cv{font-family:C;font-weight:700}
+.postit{position:absolute;background:#FFF3A6;padding:44px 46px 50px;box-shadow:0 14px 26px rgba(90,60,40,.18)}
+.widget{background:#fff;border-radius:40px;padding:34px 36px;box-shadow:0 10px 26px rgba(110,80,140,.13);position:absolute}
+.widget .big{font-weight:800;font-size:96px;line-height:1;letter-spacing:-2px}
+.widget .lab{font-family:H;font-size:38px;margin-top:10px}
+.chathead{position:absolute;left:58px;right:58px;top:150px;background:#fff;border-radius:30px;padding:20px 26px;display:flex;align-items:center;gap:18px;box-shadow:0 8px 24px rgba(80,100,160,.12)}
+.av{width:64px;height:64px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:32px}
+.notif{position:absolute;left:58px;right:58px;background:rgba(255,255,255,.92);border-radius:34px;padding:24px 28px;display:flex;align-items:center;gap:22px;box-shadow:0 8px 22px rgba(120,100,40,.12)}
+.notif .ic{width:84px;height:84px;border-radius:22px;display:grid;place-items:center;font-size:48px}
+.chk{display:flex;align-items:center;gap:24px;font-family:H;font-size:52px;height:96px}
+.chk b{width:48px;height:48px;border:4px solid var(--ink);border-radius:10px;display:grid;place-items:center;font-family:P;font-size:34px;background:#fff}
+.mod{position:absolute;right:52px;bottom:120px;transform:rotate(6deg);background:#fff;border:3px dashed var(--mag);color:var(--mag);font-family:H;font-size:28px;padding:6px 16px;border-radius:12px}
+</style></head><body>
+<div class="s lined" id="s1" style="--bg:#EFE6FF"></div>
+<div class="s grid" id="s2" style="--bg:#FFE0EC"></div>
+<div class="s" id="s3" style="--bg:#DCEAFF"></div>
+<div class="s grid" id="s4" style="--bg:#FFF4C9"></div>
+<div class="s lined" id="s5" style="--bg:#D9F4E7"></div>
+<script>
+const H=(id,html)=>document.getElementById(id).innerHTML=PAPER+html;
+const FOOT=n=>`<div class="num">${n}/5</div>`;
+H('s1',`<div class="holes">${'<i></i>'.repeat(9)}</div>`+`<div class="logo" style="left:150px">${'<i>⚡</i>'}Zapp' Pronos</div>`+STAR(870,40,150,16)+SPARK(990,360,40)+SPARK(160,1180,34)+`
+<div class="search" style="position:absolute;left:150px;right:70px;top:150px">🔍 <span>prime 3 · <span class="q">ce qui s'est passé dans l'app</span></span></div>
+<div class="cv" style="position:absolute;left:150px;top:270px;font-size:150px;line-height:.92;transform:rotate(-3deg)">Le journal<br><span style="color:var(--mag)">de Zapp'</span> ♡</div>
+<div class="tape bl" style="left:600px;top:575px;transform:rotate(8deg)"></div>
+<div class="postit" style="left:170px;top:620px;width:800px;transform:rotate(-2deg)">
+ <div class="hand" style="font-size:34px;color:var(--mag)">★ à la une</div>
+ <div style="font-weight:800;font-size:64px;line-height:1.05;margin:12px 0 18px">Le prime où personne n'avait rien vu venir</div>
+ <div style="font-size:36px;line-height:1.35">Deux phrases qui résument le prime, écrites à partir des résultats du jeu.</div></div>
+<div class="sticker" style="position:absolute;left:150px;top:1160px;transform:rotate(-4deg)">édition prime 3 ✿</div>
+<div class="mod">modèle</div>`+FOOT(1));
+H('s2',LOGO+STAR(890,40,130,-10)+SPARK(980,1180,40)+`
+<div style="position:absolute;left:58px;top:160px"><span class="tag">le prime en chiffres</span></div>
+<div class="cv" style="position:absolute;left:58px;top:240px;font-size:104px;transform:rotate(-2deg)">cher journal, ce soir…</div>
+<div class="widget" style="left:58px;top:420px;width:560px;transform:rotate(-2deg)"><div class="big">1 284</div><div class="lab">pronos posés sur le prime</div></div>
+<div class="tape pk" style="left:420px;top:398px"></div>
+<div class="widget" style="left:560px;top:650px;width:460px;transform:rotate(3deg);background:var(--mag);color:#fff"><div class="big">23 %</div><div class="lab">avaient vu juste 👀</div></div>
+<div class="widget" style="left:90px;top:900px;width:520px;transform:rotate(-1deg)"><div class="big">312</div><div class="lab">messages dans le journal</div></div>
+<div class="hand" style="position:absolute;left:660px;top:1000px;font-size:44px;transform:rotate(-6deg);color:var(--mag)">← record battu ?!</div>
+<div class="mod">modèle</div>`+FOOT(2));
+H('s3',LOGO+STAR(900,40,120,8)+SPARK(60,1230,36)+`
+<div class="chathead"><div class="av">🤫</div><div><div style="font-weight:700;font-size:34px">Les gossips de l'app</div><div style="font-size:24px;opacity:.6">en ligne · prime 3</div></div></div>
+<div class="hand" style="position:absolute;left:0;right:0;top:300px;text-align:center;font-size:30px;opacity:.6">Aujourd'hui</div>
+<div class="bubble them" style="position:absolute;left:58px;top:360px;width:800px"><div class="hand" style="font-size:30px;color:var(--mag)">brève n°1</div>Une team est passée de la 5e à la 1re place en un seul prime.</div>
+<div class="bubble me" style="position:absolute;right:58px;top:620px;width:700px;background:var(--mag);color:#fff"><div class="hand" style="font-size:30px;opacity:.85">brève n°2</div>38 jokers ×2 posés ce week-end. Courageux.</div>
+<div class="bubble them" style="position:absolute;left:58px;top:880px;width:800px"><div class="hand" style="font-size:30px;color:var(--mag)">brève n°3</div>Le chouchou des joueurs a changé : surprise.</div>
+<div class="typing" style="position:absolute;left:58px;top:1120px"><b></b><b></b><b></b></div>
+<div class="tape" style="left:760px;top:330px;transform:rotate(10deg)"></div>
+<div class="mod">modèle</div>`+FOOT(3));
+H('s4',LOGO+STAR(890,40,130,12)+SPARK(990,1200,40)+`
+<div style="position:absolute;left:58px;top:160px"><span class="tag">les plumes du journal</span></div>
+<div class="cv" style="position:absolute;left:58px;top:240px;font-size:96px;transform:rotate(-2deg)">ils ont tout raconté ✍︎</div>
+${[['🥇','#FFE27A','@pseudo_1','42'],['🥈','#E3E6F0','@pseudo_2','31'],['🥉','#F6D3B8','@pseudo_3','27']].map((r,i)=>`<div class="notif" style="top:${440+i*200}px;transform:rotate(${[-1.5,1,-0.5][i]}deg)"><div class="ic" style="background:${r[1]}">${r[0]}</div><div style="flex:1"><div style="font-weight:700;font-size:40px">${r[2]}</div><div style="font-size:28px;opacity:.6">Journal de Zapp' · maintenant</div></div><div class="hand" style="font-size:46px">${r[3]} messages</div></div>`).join('')}
+<div class="hand" style="position:absolute;left:58px;top:1080px;font-size:42px;transform:rotate(-3deg)">et toi, t'as écrit quoi ce soir ? ♡</div>
+<div class="mod">modèle</div>`+FOOT(4));
+H('s5',`<div class="holes">${'<i></i>'.repeat(9)}</div>`+`<div class="logo" style="left:150px"><i>⚡</i>Zapp' Pronos</div>`+STAR(880,40,140,-12)+SPARK(980,700,40)+`
+<div style="position:absolute;left:150px;top:160px"><span class="tag">à suivre…</span></div>
+<div class="cv" style="position:absolute;left:150px;top:240px;font-size:104px;line-height:1;transform:rotate(-2deg)">ma to-do<br>de la semaine</div>
+<div style="position:absolute;left:150px;top:520px">
+<div class="chk"><b>✓</b>lire le journal dans l'appli</div>
+<div class="chk"><b></b>écrire mon avis sur le prime</div>
+<div class="chk"><b></b>poser mes pronos avant mercredi</div>
+<div class="chk"><b></b>revenir samedi soir ♡</div></div>
+<div class="search" style="position:absolute;left:150px;right:70px;top:1000px">🔍 <span class="q">Star AC' Pronos</span><span style="margin-left:auto;font-size:30px;opacity:.5">gratuit</span></div>
+<div class="sticker" style="position:absolute;right:70px;top:1130px;background:var(--mag);color:#fff;border-color:var(--mag);transform:rotate(-4deg)">💛 le lien est en bio</div>
+<div class="mod" style="bottom:60px;right:auto;left:150px">modèle</div>`+FOOT(5));
+</script></body></html>

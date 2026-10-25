@@ -1,0 +1,84 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="da.css"><script src="kit.js"></script>
+<style>
+.grid{background-color:var(--bg);background-image:linear-gradient(rgba(150,140,200,.16) 2px,transparent 2px),linear-gradient(90deg,rgba(150,140,200,.16) 2px,transparent 2px);background-size:54px 54px}
+.lined{background-color:var(--bg);background-image:linear-gradient(transparent 62px,rgba(120,150,210,.30) 62px,rgba(120,150,210,.30) 64px,transparent 64px);background-size:100% 64px}
+.holes{position:absolute;left:22px;top:0;bottom:0;width:30px}
+.holes b{position:absolute;left:0;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:inset 0 2px 4px rgba(0,0,0,.12)}
+.cv{font-family:C;font-weight:700}
+.postit{position:absolute;background:#FFF3A6;padding:34px 40px;box-shadow:0 14px 26px rgba(90,60,40,.18)}
+.notif{background:#fff;border-radius:34px;padding:24px 30px;display:flex;align-items:center;gap:24px;box-shadow:0 8px 22px rgba(120,60,90,.12);margin-bottom:24px}
+.notif .ic{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-size:52px;flex:none;border:4px solid #fff;box-shadow:0 0 0 3px var(--ink)}
+.notif .t{font-weight:700;font-size:44px;line-height:1.1}
+.notif .st{font-family:H;font-size:32px;opacity:.7;margin-top:4px}
+.notif .pc{margin-left:auto;font-weight:800;font-size:58px;color:var(--mag);white-space:nowrap}
+.notif .pc small{font-size:30px;font-weight:700}
+.w{position:absolute;background:#fff;border-radius:34px;padding:30px 34px;box-shadow:0 8px 22px rgba(120,60,90,.12)}
+.w .big{font-weight:800;font-size:96px;line-height:1;color:var(--mag)}
+.w .big small{font-size:46px}
+.w .lb{font-family:H;font-size:36px;line-height:1.15;margin-top:12px}
+.w .ico{position:absolute;right:26px;top:22px;font-size:46px}
+.chk{display:flex;align-items:center;gap:26px;font-weight:600;font-size:46px;margin-bottom:34px}
+.chk i{width:62px;height:62px;border:5px solid var(--ink);border-radius:12px;background:#fff;flex:none;display:grid;place-items:center;font-style:normal;color:var(--mag);font-weight:800;font-size:44px}
+</style></head><body>
+<div class="s lined" id="s1" style="--bg:var(--blue)"></div>
+<div class="s grid" id="s2" style="--bg:var(--yellow)"></div>
+<div class="s grid" id="s3" style="--bg:var(--mint)"></div>
+<div class="s grid" id="s4" style="--bg:var(--lilac)"></div>
+<div class="s lined" id="s5" style="--bg:var(--pink)"></div>
+<script>
+const H='<div class="holes">'+[220,560,900,1240].map(t=>`<b style="top:${t}px"></b>`).join('')+'</div>';
+const $=(id,h)=>document.getElementById(id).innerHTML=h;
+
+$('s1',PAPER+H+LOGO+STAR(840,70,190,14)+SPARK(980,330,44)+SPARK(120,1180,40)+`
+<div style="position:absolute;left:80px;top:250px"><span class="tag">Semaine 2 · prime 3</span></div>
+<h1 style="position:absolute;left:80px;top:350px;width:920px;font-size:104px"><span class="hl">Le podium</span> <span class="hl">de la semaine</span></h1>
+<div class="cv" style="position:absolute;left:90px;top:620px;font-size:62px;transform:rotate(-2deg)">qui a fait les meilleurs pronos ?</div>
+<div class="search" style="position:absolute;left:80px;right:70px;top:790px">🔍 <span>classement <span class="q">après le prime 3</span></span></div>
+<div class="postit" style="left:560px;top:960px;width:420px;transform:rotate(4deg)"><div class="hand" style="font-size:34px;color:var(--mag)">cette semaine</div><div style="font-weight:800;font-size:58px;line-height:1.05">120 joueurs ont joué</div></div>
+<div class="tape pk" style="left:680px;top:935px"></div>
+<div class="swipe" style="left:80px">swipe →</div><div class="num">1/5</div>`);
+
+$('s2',PAPER+LOGO+STAR(880,60,150,-10)+SPARK(70,1250,38)+`
+<div style="position:absolute;left:58px;top:200px"><span class="tag">Top individuel</span></div>
+<h1 style="position:absolute;left:58px;top:290px;width:960px;font-size:76px"><span class="hl">Les meilleur·es</span> <span class="hl">pronostiqueur·ses</span></h1>
+<div style="position:absolute;left:58px;right:58px;top:520px">
+<div class="notif"><div class="ic" style="background:var(--gold)">🥇</div><div><div class="t">2 joueur·ses à égalité</div><div class="st">en tête du classement</div></div><div class="pc">94 <small>pts</small></div></div>
+<div class="notif"><div class="ic" style="background:#E6E9F2">🥈</div><div><div class="t">2 joueur·ses à égalité</div><div class="st">juste derrière</div></div><div class="pc">87 <small>pts</small></div></div>
+<div class="notif"><div class="ic" style="background:#F7D9C4">🥉</div><div><div class="t">1 joueur·se</div><div class="st">à un point près</div></div><div class="pc">86 <small>pts</small></div></div>
+</div>
+<div class="bubble them" style="position:absolute;left:58px;top:1080px;width:760px;font-size:34px">les pseudos restent secrets 🤫 ta place, c'est dans l'appli</div>
+<div class="num">2/5</div>`);
+
+$('s3',PAPER+LOGO+STAR(880,60,150,16)+SPARK(980,1180,40)+`
+<div style="position:absolute;left:58px;top:200px"><span class="tag">Top 3 des teams</span></div>
+<h1 style="position:absolute;left:58px;top:290px;width:960px;font-size:84px"><span class="hl">Les teams</span> <span class="hl">en tête</span></h1>
+<div style="position:absolute;left:58px;right:58px;top:470px">
+<div class="notif"><div class="ic" style="background:var(--gold)">🍀</div><div><div class="t">LES BEST</div><div class="st">1re · 2 membres</div></div><div class="pc">76,5 <small>pts</small></div></div>
+<div class="notif"><div class="ic" style="background:var(--pink)">👑</div><div><div class="t">✨🫶🏼</div><div class="st">2e · 2 membres</div></div><div class="pc">59,5 <small>pts</small></div></div>
+<div class="notif"><div class="ic" style="background:var(--blue)">🦄</div><div><div class="t">Quart Sud</div><div class="st">3e · 2 membres</div></div><div class="pc">59 <small>pts</small></div></div>
+</div>
+<div class="postit" style="left:90px;top:1020px;width:640px;transform:rotate(-2deg);padding:26px 34px"><div class="hand" style="font-size:36px;line-height:1.2">les points d'une team = la moyenne de ses membres (teams de 2 et +)</div></div>
+<div class="tape" style="left:300px;top:1000px"></div>
+<div class="num">3/5</div>`);
+
+$('s4',PAPER+LOGO+STAR(880,60,150,-8)+`
+<div style="position:absolute;left:58px;top:200px"><span class="tag">Les chiffres</span></div>
+<h1 style="position:absolute;left:58px;top:290px;width:960px;font-size:84px"><span class="hl">La semaine</span> <span class="hl">en chiffres</span></h1>
+<div class="w" style="left:58px;top:490px;width:470px;height:290px"><div class="ico">👥</div><div class="big">120</div><div class="lb">joueurs ont pronostiqué le prime 3</div></div>
+<div class="w" style="left:552px;top:490px;width:470px;height:290px"><div class="ico">🎯</div><div class="big">63<small>%</small></div><div class="lb">avaient trouvé la gagnante de la battle (Isabella)</div></div>
+<div class="w" style="left:58px;top:806px;width:470px;height:250px"><div class="ico">✨</div><div class="big">2</div><div class="lb">pronos parfaits 3/3 (nommés + évals)</div></div>
+<div class="w" style="left:552px;top:806px;width:470px;height:250px"><div class="ico">🃏</div><div class="big">7<small>%</small></div><div class="lb">ont joué leur joker ×2</div></div>
+<div class="w" style="left:58px;top:1082px;width:964px;height:170px;display:flex;align-items:center;gap:30px"><div class="big" style="font-size:84px">+116</div><div class="lb" style="margin:0;font-size:38px">places : la plus belle remontée,<br>de 223e à 107e 🚀</div></div>
+<div class="num" style="bottom:30px">4/5</div>`);
+
+$('s5',PAPER+H+LOGO+STAR(860,70,170,10)+SPARK(980,420,44)+`
+<div style="position:absolute;left:80px;top:220px"><span class="tag">Et toi ?</span></div>
+<h1 style="position:absolute;left:80px;top:320px;width:920px;font-size:88px"><span class="hl">Tu étais où dans</span> <span class="hl">le classement ?</span></h1>
+<div style="position:absolute;left:90px;top:640px">
+<div class="chk"><i>✓</i>Ouvre Star AC' Pronos</div>
+<div class="chk"><i>✓</i>Regarde ta place</div>
+<div class="chk"><i></i>Dis-le en commentaire 👇</div></div>
+<div class="bubble me" style="position:absolute;right:70px;top:960px;background:var(--mag);color:#fff;font-weight:700">💛 Le lien est en bio</div>
+<div class="hand" style="position:absolute;left:90px;bottom:70px;font-size:30px;opacity:.6">Appli de fans non officielle</div>
+<div class="num">5/5</div>`);
+</script></body></html>

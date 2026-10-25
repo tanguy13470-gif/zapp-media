@@ -1,0 +1,69 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="da.css"><script src="kit.js"></script>
+<style>
+.grid{background-color:var(--bg);background-image:linear-gradient(rgba(150,140,200,.16) 2px,transparent 2px),linear-gradient(90deg,rgba(150,140,200,.16) 2px,transparent 2px);background-size:54px 54px}
+.lined{background-color:var(--bg);background-image:linear-gradient(transparent 62px,rgba(150,140,220,.30) 62px,rgba(150,140,220,.30) 64px,transparent 64px);background-size:100% 64px}
+.margin{position:absolute;left:118px;top:0;bottom:0;width:3px;background:rgba(240,150,190,.55)}
+.holes{position:absolute;left:34px;top:0;bottom:0;width:30px}
+.holes b{position:absolute;left:0;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:inset 0 2px 4px rgba(0,0,0,.12)}
+.card{position:absolute;background:#fff;border-radius:40px;box-shadow:0 10px 26px rgba(120,60,90,.10)}
+.w{position:absolute;background:#fff;border-radius:40px;padding:34px 36px;box-shadow:0 8px 22px rgba(120,60,90,.10)}
+.w .big{font-weight:800;font-size:96px;line-height:1}
+.w .big small{font-size:52px}
+.w .lb{font-family:H;font-size:38px;line-height:1.35;margin-top:22px}
+.notif{position:absolute;background:#fff;border-radius:34px;padding:26px 30px;display:flex;align-items:center;gap:22px;box-shadow:0 8px 22px rgba(120,60,90,.12)}
+.notif .ic{width:64px;height:64px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:34px;flex:none}
+.postit{position:absolute;background:#FFF3A6;padding:60px 52px;box-shadow:0 14px 26px rgba(90,60,40,.18)}
+.step{display:flex;align-items:center;gap:26px;font-family:H;font-size:50px;margin-bottom:46px}
+.step i{width:46px;height:46px;border:4px solid var(--ink);border-radius:8px;font-style:normal;font-family:P;font-weight:700;font-size:30px;display:grid;place-items:center;flex:none}
+.mod{position:absolute;right:52px;bottom:118px;border:3px dashed var(--mag);color:var(--mag);font-family:H;font-size:30px;padding:6px 16px;border-radius:12px;transform:rotate(4deg);background:rgba(255,255,255,.6)}
+.foot{position:absolute;left:58px;bottom:50px;font-family:H;font-size:30px;opacity:.75}
+</style></head><body>
+<div class="s lined" id="s1" style="--bg:var(--lilac)"></div>
+<div class="s grid" id="s2" style="--bg:var(--mint)"></div>
+<div class="s" id="s3" style="--bg:var(--pink)"></div>
+<div class="s grid" id="s4" style="--bg:var(--blue)"></div>
+<script>
+// Récap du dimanche (plan 2026-11-01-post-recap). Remplacer D par les vrais chiffres
+// de l'appli, MODELE=false, puis : node shot.js recap.html s1 s2 s3 s4 (dossier out/).
+const MODELE=true;
+const D={prime:'4',nb_joueurs:'240',elim:'Camille',pct_elim:'64',nb_nommes3:'3',nb_votants_nommes:'110',
+battle:'Sacha',pct_battle:'41',ch1:'Lou',pct_ch1:'22',prochain:'5',deadline:'mercredi 18h30'};
+const M=MODELE?'<div class="mod">modèle</div>':'';
+const F='<div class="foot">Appli de fans non officielle</div>';
+const N=n=>`<div class="num" style="bottom:50px">${n}/4</div>`;
+const $=(id,h)=>document.getElementById(id).innerHTML=h;
+
+$('s1',PAPER+'<div class="margin"></div><div class="holes">'+[170,415,660,905,1150].map(t=>`<b style="top:${t}px"></b>`).join('')+'</div>'+LOGO+STAR(850,100,170,12)+SPARK(980,520,40)+SPARK(180,1120,40)+`
+<div class="tape pk" style="left:150px;top:205px;width:220px;background:repeating-linear-gradient(135deg,rgba(255,170,205,.85) 0 22px,rgba(255,215,230,.85) 22px 44px)"></div>
+<div style="position:absolute;left:150px;top:300px"><span class="tag">Récap du prime ${D.prime}</span></div>
+<div class="card" style="left:150px;top:430px;width:640px;height:320px;transform:rotate(-1.5deg)">
+<div style="position:absolute;left:44px;top:40px;font-weight:800;font-size:170px;line-height:1;color:var(--mag)">${D.pct_elim} %</div>
+<div class="hand" style="position:absolute;left:40px;top:250px;font-size:38px">des joueurs</div></div>
+<h1 style="position:absolute;left:150px;top:790px;width:900px;font-size:96px"><span class="hl">l'avaient vu venir</span></h1>
+<div class="hand" style="position:absolute;left:160px;top:930px;font-size:52px;transform:rotate(-2deg)">et toi, tu avais bon ? ↘</div>
+<div class="swipe" style="left:150px;bottom:110px">swipe →</div>`+M+F+N(1));
+
+$('s2',PAPER+LOGO+STAR(70,1100,110,-8)+`
+<div class="search" style="position:absolute;left:58px;right:58px;top:160px;padding:26px 30px;font-size:40px">🔍 <span class="q">prime ${D.prime} · les chiffres</span></div>
+<div class="w" style="left:58px;top:320px;width:470px;height:300px"><div class="big">${D.nb_joueurs}</div><div class="lb">joueurs dans l'appli</div></div>
+<div class="w" style="left:552px;top:320px;width:470px;height:300px"><div class="big">${D.pct_elim}<small> %</small></div><div class="lb">avaient trouvé le départ de ${D.elim}</div></div>
+<div class="w" style="left:58px;top:650px;width:470px;height:300px"><div class="big">${D.nb_nommes3}<small> sur ${D.nb_votants_nommes}</small></div><div class="lb">ont trouvé les 3 nommés</div></div>
+<div class="w" style="left:552px;top:650px;width:470px;height:300px"><div class="big">${D.pct_battle}<small> %</small></div><div class="lb">avaient ${D.battle} gagnant·e du battle</div></div>`+M+F+N(2));
+
+$('s3',PAPER+LOGO+STAR(870,710,140,14)+SPARK(120,330,38)+`
+<div class="notif" style="left:58px;right:58px;top:150px"><div class="ic">💛</div><div><div style="font-weight:700;font-size:34px">Le chouchou des joueurs</div><div style="font-size:26px;opacity:.6">vote en continu dans l'appli</div></div></div>
+<div class="postit" style="left:150px;top:370px;width:780px;height:310px;transform:rotate(-1.5deg)">
+<div style="font-family:C;font-weight:700;font-size:120px;line-height:.9">${D.ch1}</div>
+<div class="hand" style="font-size:46px;margin-top:30px">chouchou de ${D.pct_ch1} % des joueurs ⭐</div></div>
+<div class="tape pk" style="left:445px;top:350px"></div>
+<div class="bubble them" style="position:absolute;left:58px;top:820px;width:760px;font-size:38px">Et toi, c'est qui ton chouchou cette semaine ?</div>
+<div class="typing" style="position:absolute;left:58px;top:1000px"><b></b><b></b><b></b></div>`+M+F+N(3));
+
+$('s4',PAPER+LOGO+STAR(830,430,140,16)+SPARK(980,300,40)+`
+<h1 style="position:absolute;left:58px;top:200px;width:960px;font-size:84px"><span class="hl">Prime ${D.prochain} :</span><br><span class="hl">à toi de jouer</span></h1>
+<div style="position:absolute;left:80px;top:545px">
+<div class="step"><i>1</i>le lien est en bio</div>
+<div class="step"><i>2</i>abonne-toi à @zapp.pronos</div>
+<div class="step"><i>3</i>pose tes pronos avant ${D.deadline}</div></div>
+<div class="sticker" style="position:absolute;left:80px;top:925px;transform:rotate(-3deg);font-size:34px;padding:16px 30px">gratuit, entre potes ou en famille 💛</div>`+M+F+N(4));
+</script></body></html>

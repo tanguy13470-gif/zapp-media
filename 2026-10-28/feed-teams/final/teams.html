@@ -1,0 +1,56 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="da.css"><script src="kit.js"></script>
+<style>
+.grid{background-color:var(--bg);background-image:linear-gradient(rgba(150,140,200,.16) 2px,transparent 2px),linear-gradient(90deg,rgba(150,140,200,.16) 2px,transparent 2px);background-size:54px 54px}
+.lined{background-color:var(--bg);background-image:linear-gradient(transparent 62px,rgba(120,150,210,.30) 62px,rgba(120,150,210,.30) 64px,transparent 64px);background-size:100% 64px}
+.holes{position:absolute;left:22px;top:0;bottom:0;width:30px}
+.holes b{position:absolute;left:0;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:inset 0 2px 4px rgba(0,0,0,.12)}
+.cv{font-family:C;font-weight:700}
+.postit{position:absolute;background:#FFF3A6;padding:34px 40px;box-shadow:0 14px 26px rgba(90,60,40,.18)}
+.notif{background:#fff;border-radius:34px;padding:20px 28px;display:flex;align-items:center;gap:22px;box-shadow:0 8px 22px rgba(120,60,90,.12);margin-bottom:20px}
+.notif .ic{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;font-size:42px;font-weight:800;flex:none;border:4px solid #fff;box-shadow:0 0 0 3px var(--ink);background:var(--gold)}
+.notif .t{font-weight:700;font-size:40px;line-height:1.1}
+.notif .st{font-family:H;font-size:28px;opacity:.7;margin-top:2px}
+.notif .pc{margin-left:auto;font-weight:800;font-size:52px;color:var(--mag);white-space:nowrap}
+.notif .pc small{font-size:28px;font-weight:700}
+.chk{display:flex;align-items:center;gap:26px;font-weight:600;font-size:46px;margin-bottom:34px}
+.chk i{width:62px;height:62px;border:5px solid var(--ink);border-radius:12px;background:#fff;flex:none;display:grid;place-items:center;font-style:normal;color:var(--mag);font-weight:800;font-size:44px}
+</style></head><body>
+<div class="s lined" id="s1" style="--bg:var(--pink)"></div>
+<div class="s grid" id="s2" style="--bg:var(--yellow)"></div>
+<div class="s grid" id="s3" style="--bg:var(--mint)"></div>
+<div class="s lined" id="s4" style="--bg:var(--lilac)"></div>
+<script>
+const H='<div class="holes">'+[220,560,900,1240].map(t=>`<b style="top:${t}px"></b>`).join('')+'</div>';
+const $=(id,h)=>document.getElementById(id).innerHTML=h;
+$('s1',PAPER+H+LOGO+STAR(840,70,190,14)+SPARK(980,330,44)+SPARK(120,1180,40)+`
+<div style="position:absolute;left:80px;top:250px"><span class="tag">Classement des teams</span></div>
+<h1 style="position:absolute;left:80px;top:350px;width:920px;font-size:110px"><span class="hl">Les teams</span> <span class="hl">à fond 🔥</span></h1>
+<div class="cv" style="position:absolute;left:90px;top:620px;font-size:62px;transform:rotate(-2deg)">elles ne lâchent rien cette semaine</div>
+<div class="search" style="position:absolute;left:80px;right:70px;top:790px">🔍 <span>top teams <span class="q">après le prime 3</span></span></div>
+<div class="postit" style="left:540px;top:960px;width:440px;transform:rotate(4deg)"><div class="hand" style="font-size:34px;color:var(--mag)">n°1 cette semaine</div><div style="font-weight:800;font-size:52px;line-height:1.05">Les pros du micros · 413 pts</div></div>
+<div class="tape pk" style="left:670px;top:935px"></div>
+<div class="swipe" style="left:80px">swipe →</div><div class="num">1/4</div>`);
+const rows=[['1','Les pros du micros','9 membres','413'],['2','La star ac ‘ teams 💖','6 membres','290'],['3','StarAcSnap','11 membres','182'],['4','L’académie','3 membres','175'],['5','SENSAS TEAM · LES BEST','ex æquo','153']];
+const bg=['var(--gold)','#D4E5FF','#FFD7E5','#D6F3E4','#E8DEFF'];
+$('s2',PAPER+LOGO+STAR(860,60,160,10)+SPARK(990,300,40)+`
+<div style="position:absolute;left:58px;top:200px"><span class="tag">Le top 5</span></div>
+<h1 style="position:absolute;left:58px;top:290px;width:960px;font-size:88px"><span class="hl">Le classement</span> <span class="hl">des teams</span></h1>
+<div style="position:absolute;left:58px;right:58px;top:520px">`+rows.map((r,i)=>`<div class="notif"><div class="ic" style="background:${bg[i]}">${r[0]}</div><div><div class="t">${r[1]}</div><div class="st">${r[2]}</div></div><div class="pc">${r[3]} <small>pts</small></div></div>`).join('')+`</div>
+<div class="hand" style="position:absolute;left:68px;bottom:70px;font-size:30px;opacity:.65">points cumulés des membres après le prime 3</div><div class="num">2/4</div>`);
+$('s3',PAPER+LOGO+STAR(860,70,170,-8)+SPARK(120,1150,40)+`
+<div style="position:absolute;left:58px;top:220px"><span class="tag">À l’honneur</span></div>
+<h1 style="position:absolute;left:58px;top:310px;width:960px;font-size:96px"><span class="hl">L’équipe</span> <span class="hl">de la semaine</span></h1>
+<div class="pola" style="left:110px;top:560px;width:430px;height:500px;transform:rotate(-4deg)"><div class="ph" style="background:#FFD7E5;display:grid;place-items:center;font-size:190px">🤩</div><div class="cap">+5 places !</div></div>
+<div class="tape" style="left:230px;top:535px"></div>
+<div class="postit" style="left:500px;top:640px;width:500px;transform:rotate(3deg)"><div class="hand" style="font-size:34px;color:var(--mag)">la team qui grimpe</div><div style="font-weight:800;font-size:54px;line-height:1.05;margin-top:6px;white-space:nowrap">Star ac fan 🤩</div><div class="hand" style="font-size:36px;margin-top:12px">de 16e à 11e en une semaine</div></div>
+<div class="bubble them" style="position:absolute;left:58px;top:1130px;width:640px">👥 2 membres, 112 pts au compteur</div>
+<div class="num">3/4</div>`);
+$('s4',PAPER+H+LOGO+STAR(850,70,170,12)+SPARK(990,330,40)+`
+<div style="position:absolute;left:80px;top:230px"><span class="tag">À ton tour</span></div>
+<h1 style="position:absolute;left:80px;top:320px;width:920px;font-size:96px"><span class="hl">Rejoins ou crée</span> <span class="hl">ta team</span></h1>
+<div style="position:absolute;left:90px;top:600px">
+<div class="chk"><i>✓</i>Invite tes potes</div><div class="chk"><i>✓</i>Faites vos pronos ensemble</div><div class="chk"><i>✓</i>Grimpez au classement</div></div>
+<div class="bubble me" style="position:absolute;right:70px;top:930px;width:560px;background:var(--mag);color:#fff;font-weight:700">💛 le lien est en bio</div>
+<div class="hand" style="position:absolute;left:90px;top:1110px;font-size:32px;opacity:.7">Appli de fans non officielle</div>
+<div class="num">4/4</div>`);
+</script></body></html>

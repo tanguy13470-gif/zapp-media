@@ -1,0 +1,29 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="da.css"><script src="kit.js"></script>
+<style>.grid{background-color:var(--bg);background-image:linear-gradient(rgba(150,140,200,.16) 2px,transparent 2px),linear-gradient(90deg,rgba(150,140,200,.16) 2px,transparent 2px);background-size:54px 54px}
+.cv{font-family:C;font-weight:700}.postit{position:absolute;background:#FFF3A6;padding:40px 44px;box-shadow:0 14px 26px rgba(90,60,40,.18)}
+.list{position:absolute;left:70px;right:70px;background:#fff;border-radius:40px;padding:20px 50px;box-shadow:0 10px 26px rgba(120,60,90,.13)}
+.row{display:flex;align-items:center;gap:30px;padding:30px 0;border-bottom:3px dashed rgba(59,35,20,.15)}.row:last-child{border:0}
+.ic{width:110px;height:110px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:56px;flex:none;background:#FFF1B4;border:5px solid #fff;box-shadow:0 0 0 4px var(--ink)}
+.n{font-weight:800;font-size:68px;line-height:1.05}.b{display:inline-block;font-family:H;font-size:34px;border:3px solid var(--ink);border-radius:30px;padding:2px 18px;margin-top:8px}
+.p{margin-left:auto;font-weight:800;font-size:80px;color:var(--mag);white-space:nowrap}.p small{font-size:38px}</style></head><body>
+<div class="s tt grid" id="s1" style="--bg:var(--pink)"></div>
+<div class="s tt grid" id="s2" style="--bg:var(--pink)"></div>
+<script>
+const row=(i,n,p,b)=>`<div class="row"><div class="ic">${i}</div><div><div class="n">${n}</div>${b?`<div class="b">${b}</div>`:''}</div><div class="p">${p}<small>%</small></div></div>`;
+document.getElementById('s1').innerHTML=PAPER+LOGO+STAR(860,60,170,14)+SPARK(990,430,44)+SPARK(70,1560,40)+`
+<div style="position:absolute;left:58px;top:250px"><span class="tag">vos pronos 🔮</span></div>
+<h1 style="position:absolute;left:58px;top:350px;width:960px;font-size:110px;margin:0"><span class="hl">Vos pronos</span> <span class="hl">avant l’annonce</span></h1>
+<div class="cv" style="position:absolute;left:70px;top:640px;font-size:58px;transform:rotate(-2deg)">les 3 plus pronostiqués de l’app</div>
+<div class="list" style="top:780px">${row('1','Ydriss',72)}${row('2','Tracy',50)}${row('3','Antoine',35)}</div>
+<div class="postit" style="left:300px;top:1420px;width:600px;transform:rotate(3deg)"><div class="hand" style="font-size:40px">% des joueurs qui les avaient mis dans leurs 3 nommés 👀</div></div>
+<div class="tape pk" style="left:520px;top:1398px"></div>
+<div class="hand" style="position:absolute;left:66px;top:1800px;font-size:28px;opacity:.6">88 joueurs ont posé leurs nommés · appli de fans non officielle</div>`;
+document.getElementById('s2').innerHTML=PAPER+LOGO+STAR(860,60,170,14)+SPARK(990,430,44)+SPARK(70,1560,40)+`
+<div style="position:absolute;left:58px;top:250px"><span class="tag">la réalité 📣</span></div>
+<h1 style="position:absolute;left:58px;top:350px;width:960px;font-size:110px;margin:0"><span class="hl">Les vrais</span> <span class="hl">nommés</span></h1>
+<div class="cv" style="position:absolute;left:70px;top:640px;font-size:58px;transform:rotate(-2deg)">et qui les avait vus venir</div>
+<div class="list" style="top:780px">${row('✓','Ydriss',72,'bien vu ✅')}${row('✓','Antoine',35,'bien vu ✅')}${row('!','Maud',19,'surprise 😮')}</div>
+<div class="postit" style="left:240px;top:1460px;width:700px;transform:rotate(-2deg)"><div class="hand" style="font-size:36px;color:var(--mag)">le raté de la semaine</div><div style="font-weight:800;font-size:48px;line-height:1.1">Tracy : 50 % des pronos, pas nommée</div></div>
+<div class="tape pk" style="left:520px;top:1428px"></div>
+<div class="hand" style="position:absolute;left:66px;top:1800px;font-size:28px;opacity:.6">% des joueurs qui les avaient pronostiqués · appli de fans non officielle</div>`;
+</script></body></html>

@@ -16,6 +16,8 @@
 .av{width:150px;height:150px;border-radius:50%;background:var(--gold);border:6px solid #fff;box-shadow:0 10px 24px rgba(90,40,50,.2);display:grid;place-items:center;font-weight:800;font-size:76px}
 .holes{position:absolute;left:34px;top:0;bottom:0;width:40px;display:flex;flex-direction:column;justify-content:space-around;padding:60px 0}
 .holes i{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:inset 0 3px 4px rgba(0,0,0,.12)}
+.em{position:absolute;line-height:1;filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 12px 14px rgba(90,40,50,.25))}
+.rays{position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 50% 46%,rgba(255,255,255,.55) 0 7deg,rgba(255,255,255,0) 7deg 15deg)}
 </style></head><body>
 <div id="all"></div>
 <script>
@@ -68,10 +70,14 @@ mk('a6','grid','var(--pink)',LOGO+STAR(880,60,150,-10)+SPARK(60,1120,40)+`
 <div class="hand" style="position:absolute;left:58px;bottom:60px;font-size:30px;opacity:.6">Appli de fans non officielle</div>`+FOOT(6,6));
 
 /* D : TikTok défi, samedi 7/11 */
-mk('d1','grid','var(--blue)',LOGO+STAR(880,60,160,14)+SPARK(990,430,44)+`
-<div style="position:absolute;left:58px;top:200px"><span class="tag">défi du samedi soir</span></div>
-<h1 style="position:absolute;left:58px;top:320px;width:960px;font-size:100px"><span class="hl">Tag la personne</span><br><span class="hl">qui pense tout savoir</span><br><span class="hl">sur le château</span></h1>
-<div class="bubble me" style="position:absolute;right:58px;top:1000px;width:620px;background:var(--mag);color:#fff;transform:rotate(1deg)">tu vois qui, hein 👀</div>`+SW+FOOT(1,5));
+mk('d1','grid','var(--blue)',`<div class="rays"></div>`+LOGO+STAR(900,70,150,14)+SPARK(990,430,44)+`
+<div style="position:absolute;left:58px;top:170px"><span class="tag">défi du samedi soir</span></div>
+<h1 style="position:absolute;left:58px;top:270px;width:990px;font-size:86px;line-height:1.06"><span class="hl">Tag la personne</span><br><span class="hl">qui pense tout savoir</span><br><span class="hl">sur le château</span></h1>
+<img src="cut_defi.png" style="position:absolute;right:-30px;top:640px;width:640px;transform:rotate(4deg);filter:drop-shadow(0 16px 20px rgba(60,40,90,.28))">
+<div class="em" style="left:50px;top:700px;font-size:190px;transform:rotate(-12deg)">👀</div>
+<div class="em" style="left:300px;top:930px;font-size:150px;transform:rotate(10deg)">🧠</div>
+<div class="bubble me" style="position:absolute;left:58px;top:1110px;width:480px;background:var(--mag);color:#fff;transform:rotate(-2deg)">tu vois qui, hein ? 😏</div>
+<div class="em" style="left:70px;top:960px;font-size:120px;transform:rotate(-8deg)">💬</div>`+SW+FOOT(1,5));
 mk('d2','','var(--pink)',LOGO+STAR(890,50,120,8)+`
 <div style="position:absolute;left:58px;top:180px"><span class="tag">chaque samedi soir…</span></div>
 <div class="bubble them" style="position:absolute;left:58px;top:330px;width:760px">« moi je te dis que c'est lui qui part »</div>
@@ -99,13 +105,15 @@ mk('d5','lined','var(--lilac)',`<div class="holes">${'<i></i>'.repeat(9)}</div>`
 <div class="hand" style="position:absolute;left:150px;bottom:60px;font-size:30px;opacity:.6">Appli de fans non officielle</div>`+FOOT(5,5));
 
 /* E : IG collab, lundi 2/11 (modèle) */
-mk('e1','grid','var(--yellow)',LOGO+STAR(880,60,150,14)+SPARK(990,430,44)+`
-<div style="position:absolute;left:58px;top:190px"><span class="tag">la joueuse de la semaine</span></div>
-<div class="av" style="position:absolute;left:58px;top:310px">J</div>
-<div class="cv" style="position:absolute;left:250px;top:300px;font-size:118px;line-height:.95;transform:rotate(-2deg)">Justine</div>
-<div class="hand" style="position:absolute;left:250px;top:430px;font-size:44px;color:var(--mag)">9e au classement général</div>
-<h1 style="position:absolute;left:58px;top:600px;width:960px;font-size:96px"><span class="hl">De 60e à 9e</span><br><span class="hl">en un seul prime</span></h1>
-<div class="hand" style="position:absolute;left:58px;top:1000px;font-size:42px;width:900px">classement général après le prime 3 · +48 pts</div>`+MOD+SW+FOOT(1,4));
+mk('e1','grid','var(--yellow)',`<div class="rays"></div>`+LOGO+SPARK(990,430,44)+SPARK(70,1150,40)+`
+<div style="position:absolute;left:58px;top:170px"><span class="tag">la joueuse de la semaine</span></div>
+<div class="em" style="left:720px;top:120px;font-size:260px;transform:rotate(14deg)">🏆</div>
+<div class="em" style="left:50px;top:310px;font-size:170px;transform:rotate(-10deg)">🔥</div>
+<div class="av" style="position:absolute;left:300px;top:370px;width:210px;height:210px;font-size:104px">J</div>
+<div class="cv" style="position:absolute;left:58px;top:610px;font-size:170px;line-height:.95;transform:rotate(-3deg);text-shadow:0 6px 0 #fff">Justine</div>
+<h1 style="position:absolute;left:58px;top:830px;width:960px;font-size:112px"><span class="hl">60e</span> <span style="font-size:96px">➜</span> <span class="hl" style="color:var(--mag)">9e</span> 🚀</h1>
+<div class="hand" style="position:absolute;left:58px;top:1010px;font-size:40px;width:760px">en un seul prime · classement général · +48 pts</div>
+<div class="em" style="left:640px;top:1100px;font-size:130px;transform:rotate(-8deg)">🎉</div>`+MOD+SW+FOOT(1,4));
 mk('e2','lined','var(--pink)',`<div class="holes">${'<i></i>'.repeat(9)}</div>`+`<div class="logo" style="left:150px"><i>⚡</i>Zapp' Pronos</div>`+STAR(890,50,120,8)+`
 <div class="cv" style="position:absolute;left:150px;top:190px;font-size:104px;transform:rotate(-2deg)">son meilleur prono</div>
 <div class="widget" style="left:150px;top:420px;width:760px;transform:rotate(-1.5deg)"><div class="big" style="color:var(--mag)">+48 pts</div><div class="lab">gagnés en un seul prime</div></div>
@@ -123,10 +131,14 @@ mk('e4','grid','var(--blue)',LOGO+STAR(880,60,140,12)+`
 <div class="hand" style="position:absolute;left:58px;bottom:60px;font-size:30px;opacity:.6">Appli de fans non officielle</div>`+MOD+FOOT(4,4));
 
 /* F : IG héros du prime, dimanche 8/11 (modèle) */
-mk('f1','lined','var(--lilac)',`<div class="holes">${'<i></i>'.repeat(9)}</div>`+`<div class="logo" style="left:150px"><i>⚡</i>Zapp' Pronos</div>`+STAR(880,60,150,-12)+SPARK(990,430,44)+`
-<div style="position:absolute;left:150px;top:190px"><span class="tag">prime 5 · les chiffres</span></div>
-<h1 style="position:absolute;left:150px;top:310px;width:860px;font-size:110px"><span class="hl">Les héros</span><br><span class="hl">du prime</span></h1>
-<div class="hand" style="position:absolute;left:150px;top:720px;font-size:46px;color:var(--mag)">les joueurs qui ont tout compris ce soir</div>`+MOD+SW+FOOT(1,4));
+mk('f1','lined','var(--lilac)',`<div class="rays"></div><div class="holes">${'<i></i>'.repeat(9)}</div>`+`<div class="logo" style="left:150px"><i>⚡</i>Zapp' Pronos</div>`+STAR(880,60,150,-12)+SPARK(990,430,44)+`
+<div style="position:absolute;left:150px;top:170px"><span class="tag">prime 5 · les chiffres</span></div>
+<div class="em" style="left:130px;top:300px;font-size:250px;transform:rotate(-10deg)">🏆</div>
+<div class="em" style="left:480px;top:290px;font-size:190px;transform:rotate(8deg)">🔥</div>
+<div class="em" style="left:760px;top:360px;font-size:150px;transform:rotate(14deg)">⭐</div>
+<h1 style="position:absolute;left:150px;top:640px;width:860px;font-size:124px"><span class="hl">Les héros</span><br><span class="hl">du prime</span></h1>
+<div class="em" style="left:150px;top:1010px;font-size:130px">🥇</div><div class="em" style="left:330px;top:1030px;font-size:130px">🥈</div><div class="em" style="left:510px;top:1050px;font-size:130px">🥉</div>
+<div class="hand" style="position:absolute;left:720px;top:1060px;font-size:46px;color:var(--mag);transform:rotate(-4deg)">tu en es ? 👀</div>`+MOD+SW+FOOT(1,4));
 mk('f2','','var(--yellow)',LOGO+STAR(890,50,120,10)+`
 <div style="position:absolute;left:58px;top:190px"><span class="tag">le podium du prime</span></div>
 <div class="hand" style="position:absolute;left:58px;top:290px;font-size:36px;opacity:.7">points du prime seulement, pas le classement général</div>

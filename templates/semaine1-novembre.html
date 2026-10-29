@@ -1,0 +1,147 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="da.css"><script src="kit.js"></script>
+<style>
+.lined{background-color:var(--bg);background-image:linear-gradient(90deg,transparent 118px,rgba(232,120,160,.35) 118px,rgba(232,120,160,.35) 121px,transparent 121px),repeating-linear-gradient(transparent 0 62px,rgba(120,150,220,.22) 62px 64px)}
+.grid{background-color:var(--bg);background-image:linear-gradient(rgba(150,140,200,.16) 2px,transparent 2px),linear-gradient(90deg,rgba(150,140,200,.16) 2px,transparent 2px);background-size:54px 54px}
+.cv{font-family:C;font-weight:700}
+.postit{position:absolute;background:#FFF3A6;padding:40px 44px;box-shadow:0 14px 26px rgba(90,60,40,.18)}
+.widget{background:#fff;border-radius:40px;padding:34px 36px;box-shadow:0 10px 26px rgba(110,80,140,.13);position:absolute}
+.widget .big{font-weight:800;font-size:110px;line-height:1;letter-spacing:-2px}
+.widget .lab{font-family:H;font-size:40px;margin-top:10px}
+.notif{background:#fff;border-radius:34px;padding:24px 30px;display:flex;align-items:center;gap:22px;box-shadow:0 8px 22px rgba(120,60,90,.12);margin-bottom:22px}
+.notif .ic{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;font-size:40px;font-weight:800;background:var(--gold)}
+.notif .pc{margin-left:auto;font-weight:800;font-size:54px;color:var(--mag)}
+.chk{display:flex;align-items:center;gap:26px;font-family:H;font-size:54px;min-height:104px;line-height:1.1}
+.chk b{flex:none;width:52px;height:52px;border:4px solid var(--ink);border-radius:10px;display:grid;place-items:center;font-family:P;font-size:36px;background:#fff}
+.mod{position:absolute;right:52px;bottom:130px;transform:rotate(6deg);background:#fff;border:3px dashed var(--mag);color:var(--mag);font-family:H;font-size:30px;padding:6px 18px;border-radius:12px}
+.av{width:150px;height:150px;border-radius:50%;background:var(--gold);border:6px solid #fff;box-shadow:0 10px 24px rgba(90,40,50,.2);display:grid;place-items:center;font-weight:800;font-size:76px}
+.holes{position:absolute;left:34px;top:0;bottom:0;width:40px;display:flex;flex-direction:column;justify-content:space-around;padding:60px 0}
+.holes i{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:inset 0 3px 4px rgba(0,0,0,.12)}
+</style></head><body>
+<div id="all"></div>
+<script>
+const FOOT=(n,t)=>`<div class="num">${n}/${t}</div>`;
+const MOD=`<div class="mod">modèle</div>`;
+const slides={};
+const mk=(id,cls,bg,html)=>{const d=document.createElement('div');d.className='s '+cls;d.id=id;d.style.setProperty('--bg',bg);d.innerHTML=PAPER+html;document.getElementById('all').appendChild(d)};
+const SW=`<div class="swipe">glisse →</div>`;
+
+/* A : TikTok ép.1, mardi 3/11 */
+mk('a1','grid','var(--pink)',LOGO+STAR(880,60,160,14)+SPARK(990,430,44)+SPARK(60,1180,40)+`
+<div style="position:absolute;left:58px;top:200px"><span class="tag">épisode 1</span></div>
+<div class="hand" style="position:absolute;left:58px;top:290px;font-size:46px;color:var(--mag)">je code une appli pour la Star Ac'</div>
+<h1 style="position:absolute;left:58px;top:390px;width:960px;font-size:104px"><span class="hl">229 joueurs</span><br><span class="hl">plus tard…</span></h1>
+<div class="bubble them" style="position:absolute;left:58px;top:850px;width:760px;transform:rotate(-1deg)">tout est parti d'une vidéo, un soir d'octobre 📱</div>
+<div class="typing" style="position:absolute;left:58px;top:1080px"><b></b><b></b><b></b></div>`+SW+FOOT(1,6));
+mk('a2','lined','var(--blue)',`<div class="holes">${'<i></i>'.repeat(9)}</div>`+`<div class="logo" style="left:150px"><i>⚡</i>Zapp' Pronos</div>`+STAR(890,50,130,-10)+`
+<div class="search" style="position:absolute;left:150px;right:58px;top:170px">🔍 <span class="q">Star AC' Pronos</span></div>
+<div class="cv" style="position:absolute;left:150px;top:290px;font-size:120px;line-height:.95;transform:rotate(-2deg)">c'est quoi ?</div>
+<div class="postit" style="left:150px;top:480px;width:800px;transform:rotate(1.5deg)"><div style="font-weight:800;font-size:56px;line-height:1.1">Le jeu de pronos des fans de la Star Ac' 2026</div><div class="hand" style="font-size:42px;margin-top:14px;color:var(--mag)">gratuit · entre potes ou en famille</div></div>
+<div class="tape" style="left:480px;top:455px"></div>
+<div class="bubble them" style="position:absolute;left:150px;top:860px;width:700px">🎯 tu devines les nommés et l'éliminé·e</div>
+<div class="bubble me" style="position:absolute;right:58px;top:1010px;width:640px;background:var(--mag);color:#fff">⭐ tu gagnes des points</div>
+<div class="bubble them" style="position:absolute;left:150px;top:1140px;width:700px">🏆 tu te compares à tes potes</div>
+<div class="hand" style="position:absolute;left:150px;bottom:60px;font-size:30px;opacity:.6">Appli de fans non officielle</div>`+FOOT(2,6));
+mk('a3','grid','var(--yellow)',LOGO+STAR(890,50,130,10)+SPARK(980,1180,40)+`
+<div style="position:absolute;left:58px;top:200px"><span class="tag">14 octobre</span></div>
+<div class="cv" style="position:absolute;left:58px;top:290px;font-size:104px;line-height:.95;transform:rotate(-2deg)">je poste<br>une vidéo…</div>
+<div class="widget" style="left:58px;top:640px;width:700px;transform:rotate(-2deg)"><div class="big" style="color:var(--mag)">114</div><div class="lab">inscriptions en 2 jours</div></div>
+<div class="tape pk" style="left:380px;top:615px"></div>
+<div class="bubble me" style="position:absolute;right:58px;top:1000px;width:700px;transform:rotate(1deg)">je ne m'y attendais vraiment pas 😳</div>`+FOOT(3,6));
+mk('a4','','var(--mint)',LOGO+STAR(890,50,130,-8)+`
+<div style="position:absolute;left:58px;top:200px"><span class="tag">aujourd'hui</span></div>
+<div class="cv" style="position:absolute;left:58px;top:290px;font-size:100px;transform:rotate(-2deg)">où on en est ✿</div>
+<div class="widget" style="left:58px;top:470px;width:480px;transform:rotate(-2deg)"><div class="big">229</div><div class="lab">joueurs</div></div>
+<div class="widget" style="left:560px;top:560px;width:460px;transform:rotate(2deg);background:var(--mag);color:#fff"><div class="big">39</div><div class="lab">teams</div></div>
+<div class="widget" style="left:110px;top:860px;width:560px;transform:rotate(-1deg)"><div class="big">101</div><div class="lab">messages dans le journal</div></div>
+<div class="hand" style="position:absolute;left:100px;top:1190px;font-size:42px;color:var(--mag);transform:rotate(-3deg)">merci, vraiment ♡</div>`+FOOT(4,6));
+mk('a5','lined','var(--lilac)',`<div class="holes">${'<i></i>'.repeat(9)}</div>`+`<div class="logo" style="left:150px"><i>⚡</i>Zapp' Pronos</div>`+STAR(890,50,130,12)+`
+<div style="position:absolute;left:150px;top:200px"><span class="tag">la suite</span></div>
+<div class="cv" style="position:absolute;left:150px;top:290px;font-size:104px;line-height:.95;transform:rotate(-2deg)">les meilleures<br>idées viennent<br>de vous</div>
+<div class="postit" style="left:150px;top:760px;width:780px;transform:rotate(-1.5deg)"><div class="hand" style="font-size:36px;color:var(--mag)">★ épisode 2</div><div style="font-weight:800;font-size:54px;line-height:1.1;margin-top:8px">Le battle est né d'une idée de deux joueuses</div></div>
+<div class="tape bl" style="left:520px;top:735px"></div>
+<div class="hand" style="position:absolute;left:150px;top:1160px;font-size:44px">à suivre mardi prochain →</div>`+FOOT(5,6));
+mk('a6','grid','var(--pink)',LOGO+STAR(880,60,150,-10)+SPARK(60,1120,40)+`
+<div class="cv" style="position:absolute;left:58px;top:240px;font-size:128px;line-height:.95;transform:rotate(-2deg)">tu veux<br>jouer aussi ?</div>
+<div class="search" style="position:absolute;left:58px;right:58px;top:700px">💬 <span>commente <span class="q">STAR AC</span></span></div>
+<div class="bubble them" style="position:absolute;left:58px;top:880px;width:880px">et je t'envoie le lien en DM 💌</div>
+<div class="chk" style="position:absolute;left:58px;top:1060px"><b>✓</b>abonne-toi pour être accepté·e</div>
+<div class="hand" style="position:absolute;left:58px;bottom:60px;font-size:30px;opacity:.6">Appli de fans non officielle</div>`+FOOT(6,6));
+
+/* D : TikTok défi, samedi 7/11 */
+mk('d1','grid','var(--blue)',LOGO+STAR(880,60,160,14)+SPARK(990,430,44)+`
+<div style="position:absolute;left:58px;top:200px"><span class="tag">défi du samedi soir</span></div>
+<h1 style="position:absolute;left:58px;top:320px;width:960px;font-size:100px"><span class="hl">Tag la personne</span><br><span class="hl">qui pense tout savoir</span><br><span class="hl">sur le château</span></h1>
+<div class="bubble me" style="position:absolute;right:58px;top:1000px;width:620px;background:var(--mag);color:#fff;transform:rotate(1deg)">tu vois qui, hein 👀</div>`+SW+FOOT(1,5));
+mk('d2','','var(--pink)',LOGO+STAR(890,50,120,8)+`
+<div style="position:absolute;left:58px;top:180px"><span class="tag">chaque samedi soir…</span></div>
+<div class="bubble them" style="position:absolute;left:58px;top:330px;width:760px">« moi je te dis que c'est lui qui part »</div>
+<div class="bubble me" style="position:absolute;right:58px;top:530px;width:700px">« t'as aucune idée de ce que tu racontes »</div>
+<div class="bubble them" style="position:absolute;left:58px;top:730px;width:820px">« parie. »</div>
+<div class="postit" style="left:58px;top:960px;width:930px;transform:rotate(-1.5deg)"><div style="font-weight:800;font-size:50px;line-height:1.15">Star AC' Pronos, c'est le jeu de pronos des fans de la Star Ac' : on parie des points, pas de l'argent.</div></div>
+<div class="tape" style="left:420px;top:935px"></div>`+FOOT(2,5));
+mk('d3','lined','var(--yellow)',`<div class="holes">${'<i></i>'.repeat(9)}</div>`+`<div class="logo" style="left:150px"><i>⚡</i>Zapp' Pronos</div>`+STAR(890,50,130,-12)+`
+<div class="cv" style="position:absolute;left:150px;top:190px;font-size:104px;line-height:.95;transform:rotate(-2deg)">elle pense<br>tout savoir si…</div>
+<div style="position:absolute;left:150px;top:520px;width:850px">
+<div class="chk"><b>✓</b>elle a un avis sur chaque nommé·e</div>
+<div class="chk"><b>✓</b>elle connaît tous les prénoms</div>
+<div class="chk"><b>✓</b>elle parle à la télé</div>
+<div class="chk"><b>✓</b>elle dit « je l'avais dit »</div>
+<div class="chk"><b></b>elle l'a prouvé dans l'appli</div></div>`+FOOT(3,5));
+mk('d4','grid','var(--mint)',LOGO+STAR(890,50,130,10)+SPARK(980,1180,40)+`
+<div style="position:absolute;left:58px;top:200px"><span class="tag">ce soir</span></div>
+<div class="cv" style="position:absolute;left:58px;top:290px;font-size:110px;line-height:.95;transform:rotate(-2deg)">prouve-le<br>dans l'appli</div>
+<div class="widget" style="left:58px;top:660px;width:880px;transform:rotate(-1deg)"><div class="lab" style="margin:0 0 10px">ses pronos</div><div style="font-weight:800;font-size:60px;line-height:1.1">les nommés · l'éliminé·e · le top 3</div></div>
+<div class="notif" style="position:absolute;left:58px;right:58px;top:980px"><div class="ic">⭐</div><div style="font-weight:700;font-size:42px;line-height:1.15">Des points à chaque bon prono, et le classement entre potes</div></div>`+FOOT(4,5));
+mk('d5','lined','var(--lilac)',`<div class="holes">${'<i></i>'.repeat(9)}</div>`+`<div class="logo" style="left:150px"><i>⚡</i>Zapp' Pronos</div>`+STAR(880,60,150,12)+SPARK(60,1180,40)+`
+<div class="cv" style="position:absolute;left:150px;top:230px;font-size:124px;line-height:.95;transform:rotate(-2deg)">tag-la<br>en commentaire</div>
+<div class="search" style="position:absolute;left:150px;right:58px;top:700px">💬 <span>puis commente <span class="q">STAR AC</span></span></div>
+<div class="bubble them" style="position:absolute;left:150px;top:880px;width:780px">je vous envoie le lien en DM 💌</div>
+<div class="hand" style="position:absolute;left:150px;bottom:60px;font-size:30px;opacity:.6">Appli de fans non officielle</div>`+FOOT(5,5));
+
+/* E : IG collab, lundi 2/11 (modèle) */
+mk('e1','grid','var(--yellow)',LOGO+STAR(880,60,150,14)+SPARK(990,430,44)+`
+<div style="position:absolute;left:58px;top:190px"><span class="tag">la joueuse de la semaine</span></div>
+<div class="av" style="position:absolute;left:58px;top:310px">J</div>
+<div class="cv" style="position:absolute;left:250px;top:300px;font-size:118px;line-height:.95;transform:rotate(-2deg)">Justine</div>
+<div class="hand" style="position:absolute;left:250px;top:430px;font-size:44px;color:var(--mag)">9e au classement général</div>
+<h1 style="position:absolute;left:58px;top:600px;width:960px;font-size:96px"><span class="hl">De 60e à 9e</span><br><span class="hl">en un seul prime</span></h1>
+<div class="hand" style="position:absolute;left:58px;top:1000px;font-size:42px;width:900px">classement général après le prime 3 · +48 pts</div>`+MOD+SW+FOOT(1,4));
+mk('e2','lined','var(--pink)',`<div class="holes">${'<i></i>'.repeat(9)}</div>`+`<div class="logo" style="left:150px"><i>⚡</i>Zapp' Pronos</div>`+STAR(890,50,120,8)+`
+<div class="cv" style="position:absolute;left:150px;top:190px;font-size:104px;transform:rotate(-2deg)">son meilleur prono</div>
+<div class="widget" style="left:150px;top:420px;width:760px;transform:rotate(-1.5deg)"><div class="big" style="color:var(--mag)">+48 pts</div><div class="lab">gagnés en un seul prime</div></div>
+<div class="tape pk" style="left:470px;top:395px"></div>
+<div class="notif" style="position:absolute;left:150px;right:58px;top:830px"><div class="ic">⭐</div><div style="font-weight:700;font-size:40px;line-height:1.15">Classement général : 18 → 66 pts après le prime 3</div></div>`+MOD+FOOT(2,4));
+mk('e3','','var(--mint)',LOGO+STAR(890,50,120,-8)+`
+<div class="cv" style="position:absolute;left:58px;top:190px;font-size:104px;transform:rotate(-2deg)">sa phrase du journal</div>
+<div class="postit" style="left:70px;top:420px;width:920px;transform:rotate(-1.5deg)"><div class="hand" style="font-size:36px;color:var(--mag)">★ écrit par Justine</div><div style="font-size:50px;line-height:1.25;margin-top:10px">« Sa phrase du journal s'affiche ici, copiée telle quelle depuis l'appli. »</div></div>
+<div class="tape" style="left:420px;top:395px"></div>
+<div class="bubble them" style="position:absolute;left:58px;top:900px;width:760px">son chouchou : <b>le chouchou de Justine</b> 💛</div>`+MOD+FOOT(3,4));
+mk('e4','grid','var(--blue)',LOGO+STAR(880,60,140,12)+`
+<div class="cv" style="position:absolute;left:58px;top:230px;font-size:120px;line-height:.95;transform:rotate(-2deg)">envoie-le à<br>la personne avec<br>qui tu regardes<br>le prime</div>
+<div class="search" style="position:absolute;left:58px;right:58px;top:880px">🔍 <span class="q">Star AC' Pronos</span><span style="margin-left:auto;font-size:30px;opacity:.5">lien en bio</span></div>
+<div class="bubble them" style="position:absolute;left:58px;top:1040px;width:820px">et toi, tu serais à quelle place ? 👀</div>
+<div class="hand" style="position:absolute;left:58px;bottom:60px;font-size:30px;opacity:.6">Appli de fans non officielle</div>`+MOD+FOOT(4,4));
+
+/* F : IG héros du prime, dimanche 8/11 (modèle) */
+mk('f1','lined','var(--lilac)',`<div class="holes">${'<i></i>'.repeat(9)}</div>`+`<div class="logo" style="left:150px"><i>⚡</i>Zapp' Pronos</div>`+STAR(880,60,150,-12)+SPARK(990,430,44)+`
+<div style="position:absolute;left:150px;top:190px"><span class="tag">prime 5 · les chiffres</span></div>
+<h1 style="position:absolute;left:150px;top:310px;width:860px;font-size:110px"><span class="hl">Les héros</span><br><span class="hl">du prime</span></h1>
+<div class="hand" style="position:absolute;left:150px;top:720px;font-size:46px;color:var(--mag)">les joueurs qui ont tout compris ce soir</div>`+MOD+SW+FOOT(1,4));
+mk('f2','','var(--yellow)',LOGO+STAR(890,50,120,10)+`
+<div style="position:absolute;left:58px;top:190px"><span class="tag">le podium du prime</span></div>
+<div class="hand" style="position:absolute;left:58px;top:290px;font-size:36px;opacity:.7">points du prime seulement, pas le classement général</div>
+<div style="position:absolute;left:58px;right:58px;top:380px">
+<div class="notif"><div class="ic">🥇</div><div style="font-weight:700;font-size:44px">pseudo_1</div><div class="pc">94</div></div>
+<div class="notif"><div class="ic" style="background:#E3E6F0">🥈</div><div style="font-weight:700;font-size:44px">pseudo_2</div><div class="pc">88</div></div>
+<div class="notif"><div class="ic" style="background:#F6D3B8">🥉</div><div style="font-weight:700;font-size:44px">pseudo_3</div><div class="pc">81</div></div></div>`+MOD+FOOT(2,4));
+mk('f3','grid','var(--mint)',LOGO+STAR(890,50,120,-10)+`
+<div style="position:absolute;left:58px;top:190px"><span class="tag">la plus belle remontée</span></div>
+<div class="cv" style="position:absolute;left:58px;top:290px;font-size:104px;transform:rotate(-2deg)">+X places ↗</div>
+<div class="widget" style="left:58px;top:520px;width:760px;transform:rotate(-1.5deg)"><div class="big" style="color:var(--mag)">pseudo</div><div class="lab">de 00e à 00e au classement général</div></div>
+<div class="tape pk" style="left:380px;top:495px"></div>`+MOD+FOOT(3,4));
+mk('f4','lined','var(--pink)',`<div class="holes">${'<i></i>'.repeat(9)}</div>`+`<div class="logo" style="left:150px"><i>⚡</i>Zapp' Pronos</div>`+STAR(880,60,140,12)+`
+<div style="position:absolute;left:150px;top:190px"><span class="tag">le duel le plus serré ⚔️</span></div>
+<div class="postit" style="left:150px;top:330px;width:800px;transform:rotate(-1.5deg)"><div style="font-weight:800;font-size:60px;line-height:1.1">pseudo_A <span style="color:var(--mag)">VS</span> pseudo_B</div><div class="hand" style="font-size:42px;margin-top:14px">00 pts contre 00 pts</div></div>
+<div class="search" style="position:absolute;left:150px;right:58px;top:800px">🔍 <span class="q">Star AC' Pronos</span><span style="margin-left:auto;font-size:30px;opacity:.5">lien en bio</span></div>
+<div class="hand" style="position:absolute;left:150px;bottom:60px;font-size:30px;opacity:.6">Appli de fans non officielle</div>`+MOD+FOOT(4,4));
+</script></body></html>

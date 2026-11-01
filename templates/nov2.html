@@ -1,0 +1,73 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="da.css"><script src="kit.js"></script>
+<style>.grid{background-color:var(--bg);background-image:linear-gradient(rgba(150,140,200,.16) 2px,transparent 2px),linear-gradient(90deg,rgba(150,140,200,.16) 2px,transparent 2px);background-size:54px 54px}
+.lined{background-color:var(--bg);background-image:linear-gradient(transparent 62px,rgba(150,140,220,.30) 62px,rgba(150,140,220,.30) 64px,transparent 64px);background-size:100% 64px}
+.rays{background:repeating-conic-gradient(from 0deg at 50% 40%,rgba(255,255,255,.35) 0 8deg,transparent 8deg 16deg),var(--bg)}
+.cv{font-family:C;font-weight:700}.postit{position:absolute;background:#FFF3A6;padding:40px 44px;box-shadow:0 14px 26px rgba(90,60,40,.18)}
+.row{position:absolute;left:58px;right:58px;height:108px;background:#fff;border-radius:30px;display:flex;align-items:center;gap:22px;padding:0 34px;box-shadow:0 8px 20px rgba(120,60,90,.12)}
+.row .rk{width:70px;height:70px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:34px;background:#FFF1B4;flex:none}
+.row .nm{font-weight:800;font-size:42px}.row .pt{margin-left:auto;font-weight:800;font-size:44px;color:var(--mag)}
+.w{position:absolute;background:#fff;border-radius:40px;padding:34px 40px;box-shadow:0 8px 22px rgba(120,60,90,.10)}
+.w .big{font-weight:800;font-size:150px;line-height:1;color:var(--mag)}.w .lb{font-family:H;font-size:44px;line-height:1.3;margin-top:16px}
+.mod{position:absolute;right:52px;bottom:118px;border:3px dashed var(--mag);color:var(--mag);font-family:H;font-size:30px;padding:6px 16px;border-radius:12px;transform:rotate(4deg);background:rgba(255,255,255,.6)}
+.foot{position:absolute;left:58px;bottom:50px;font-family:H;font-size:30px;opacity:.75}
+.chk{display:flex;align-items:center;gap:26px;margin-bottom:34px}.chk i{width:58px;height:58px;border:5px solid var(--ink);border-radius:10px;flex:none;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:36px}
+.chk b{font-weight:800;font-size:46px;display:block}.chk span{font-family:H;font-size:40px}
+</style></head><body><div id="root"></div>
+<script>
+const R=document.getElementById('root');
+const bgs={pk:'var(--pink)',bl:'var(--blue)',ye:'var(--yellow)',mi:'var(--mint)',li:'var(--lilac)'};
+function S(id,{bg='pk',paper='grid',story=false,mod=false,n=''},html){const d=document.createElement('div');d.id=id;d.className='s '+paper+(story?' tt':'');d.style.setProperty('--bg',bgs[bg]);
+d.innerHTML=PAPER+LOGO+STAR(870,story?190:70,140,12)+SPARK(990,story?640:520,38)+html+(mod?'<div class="mod">modèle</div>':'')+`<div class="foot" ${story?'style="bottom:90px"':''}>Appli de fans non officielle${n?' · '+n:''}</div>`;R.appendChild(d)}
+const T=(t,top=170)=>`<div style="position:absolute;left:58px;top:${top}px"><span class="tag">${t}</span></div>`;
+const H=(h,top=270,fs=100)=>`<h1 style="position:absolute;left:58px;top:${top}px;width:960px;font-size:${fs}px;margin:0;line-height:1.1">${h.split('|').map(x=>`<span class="hl">${x}</span>`).join('<br>')}</h1>`;
+const CV=(t,top,fs=56)=>`<div class="cv" style="position:absolute;left:66px;top:${top}px;font-size:${fs}px;width:950px;transform:rotate(-2deg)">${t}</div>`;
+const B=(t,top,me)=>`<div class="bubble ${me?'me':'them'}" style="position:absolute;${me?'right':'left'}:58px;top:${top}px;width:780px;font-size:40px">${t}</div>`;
+const PI=(t,top,small)=>`<div class="postit" style="left:150px;top:${top}px;width:760px;transform:rotate(-1.5deg)">${small?`<div class="hand" style="font-size:36px;color:var(--mag)">${small}</div>`:''}<div style="font-weight:800;font-size:58px;line-height:1.15">${t}</div></div><div class="tape pk" style="left:450px;top:${top-22}px"></div>`;
+const SR=(t,q,top)=>`<div class="search" style="position:absolute;left:58px;right:58px;top:${top}px">🔍 <span>${t} <span class="q">${q}</span></span></div>`;
+const ROWS=(L,top,h=124)=>L.map((r,i)=>`<div class="row" style="top:${top+i*h}px"><div class="rk">${r[0]}</div><div class="nm">${r[1]}</div><div class="pt">${r[2]||''}</div></div>`).join('');
+const CHK=(L,top)=>`<div class="w" style="left:58px;right:58px;top:${top}px;padding:50px 50px 16px">${L.map(x=>`<div class="chk"><i>${x[2]||''}</i><div><b>${x[0]}</b><span>${x[1]}</span></div></div>`).join('')}</div>`;
+
+/* ===== Semaine du 2 au 8 novembre (prime 5 vendredi 6/11) ===== */
+// mar 3/11 12h story deadline nommés (modèle : nb)
+S('a1',{bg:'ye',story:true,mod:true},T('⏰ dernier jour',230)+H('Nommés : |ce soir 18h30',330,100)+CV('le prime 5 est vendredi, donc tout avance d\'un jour',600)+`<div class="w" style="left:58px;right:58px;top:760px"><div class="big">95</div><div class="lb">joueurs ont déjà posé leurs 3 nommés. Et toi ?</div></div>`+CHK([['Les 3 nommés','avant 18h30'],['Le top 3 des évals','avant 18h30']],1180)+SR('tes pronos','lien en bio',1640));
+// mer 4/11 : nommés vus par les joueurs (modèle) : Reel IG 19h + TikTok 20h
+S('a2',{bg:'pk',paper:'rays',mod:true},T('prime 5 · les nommés')+H('Qui les joueurs|voient nommés ?',270,96)+CV('90 joueurs ont voté, voici leur top 3 👇',560)+ROWS([['1','Prénom 1','64 %'],['2','Prénom 2','51 %'],['3','Prénom 3','38 %']],680)+B('tu es d\'accord avec eux ?',1080,true),'');
+S('a3',{bg:'bl',mod:true},T('et la vraie liste ?')+H('Verdict|ce soir 🍿',270,110)+PI('Tu avais vu juste ?<br>Dis-le en commentaire 👇',620,'prime 5 · vendredi 21h')+SR('joue au prime 5','lien en bio',1000));
+// jeu 5/11 19h : chouchou à 1 voix près (données connues)
+S('a4',{bg:'pk',paper:'rays'},T('le chouchou des joueurs')+H('À 1 voix|près 😱',270,120)+CV('173 joueurs ont choisi leur chouchou dans l\'appli',600)+`<div class="w" style="left:58px;top:720px;width:460px"><div class="big" style="font-size:120px">42</div><div class="lb">voix pour Noémie 💛</div></div><div class="w" style="left:562px;top:720px;width:460px"><div class="big" style="font-size:120px">41</div><div class="lb">voix pour Cameron 💙</div></div>`+`<div class="swipe" style="left:58px;bottom:110px">swipe →</div>`,'1/3');
+S('a5',{bg:'mi'},T('le reste du podium')+ROWS([['🥇','Noémie','24 %'],['🥈','Cameron','24 %'],['🥉','Isabella','17 %'],['4','Zoé','9 %'],['5','Félix','7 %']],300)+B('et le dernier de la classe des joueurs ? Kylian, choisi par 23 % 😅',980),'2/3');
+S('a6',{bg:'bl'},T('à toi de jouer')+H('Qui passe|devant ?',270,120)+CHK([['Noémie','💛 en commentaire'],['Cameron','💙 en commentaire']],600)+SR('change ton chouchou','dans l\'appli',1060),'3/3');
+// ven 6/11 17h story : ce soir vendredi
+S('a7',{bg:'li',story:true},T('🚨 ce soir, pas demain',230)+H('Prime 5|ce soir 21h',330,110)+CV('oui, un vendredi ! derniers pronos 👇',620)+CHK([['Battle','avant 22h30'],['Éliminé·e','avant 23h30'],['Ton joker ×2','tu le poses ce soir ?']],760)+SR('derniers pronos','lien en bio',1500));
+// ven 6/11 20h TikTok : le club des 11 (pseudos)
+S('a8',{bg:'ye',paper:'rays'},T('prime 4 · le club des 11')+H('11 joueurs|sur 90',270,120)+CV('ont trouvé les 3 nommés du prime 4 👑',570)+PI('Et toi, tu ferais partie<br>du club au prime 5 ?',800,'Antoine, Maud, Ydriss')+`<div class="swipe" style="left:58px;bottom:110px">swipe →</div>`,'1/3');
+S('a9',{bg:'mi'},T('bravo à eux')+`<div class="w" style="left:58px;right:58px;top:280px;font-weight:800;font-size:54px;line-height:1.55">cathycrtl · Grevinou · Julastar · melanielty · Marie885 · alexane1927 · ele_0601 · theastfn · leane13 · Lisouille · Mathilde</div>`+B('tous les 11 en même temps, c\'est 12 % des joueurs',920),'2/3');
+S('a10',{bg:'bl'},T('ton tour')+H('Prime 5|ce soir 21h',270,110)+CV('commente STAR AC et je t\'envoie le lien 💌',580)+SR('Star AC\' Pronos','gratuit',760),'3/3');
+// dim 8/11 18h IG + 20h TikTok : la team de la semaine (modèle)
+S('a11',{bg:'mi',paper:'rays',mod:true},T('la team de la semaine')+H('🔥 NOM DE|LA TEAM',270,110)+`<div class="w" style="left:58px;right:58px;top:620px"><div class="big" style="font-size:120px">12e → 6e</div><div class="lb">au classement des teams après le prime 5</div></div>`+B('tag ta team en commentaire 👇',1000,true),'1/2');
+S('a12',{bg:'pk',mod:true},T('pas encore de team ?')+H('Crée-la|avec tes potes',270,100)+CHK([['1','ouvre l\'appli (lien en bio)','✓'],['2','onglet Teams, crée ta team','✓'],['3','envoie le code à tes potes','✓']],600)+'','2/2');
+
+/* ===== Semaine du 9 au 15 novembre (prime 6 samedi 14/11) ===== */
+// lun 9/11 19h IG : les duels du prime 5 (modèle)
+S('b1',{bg:'ye',paper:'rays',mod:true},T('les duels du prime 5 ⚔️')+H('Pseudo A|bat Pseudo B',270,96)+`<div class="w" style="left:58px;right:58px;top:600px"><div class="big" style="font-size:120px">38 – 29</div><div class="lb">sur le prime 5 · +5 pts au gagnant</div></div>`+B('le duel le plus serré de la semaine 👀',990),'1/2');
+S('b2',{bg:'li',mod:true},T('qui peut défier au prime 6 ?')+ROWS([['🏆','Pseudo 1','71 pts'],['🏆','Pseudo 2','67 pts'],['🏆','Pseudo 3','59 pts'],['📈','Pseudo 4','+38'],['📈','Pseudo 5','+37'],['📈','Pseudo 6','+31']],280,118)+B('les 3 meilleurs du prime et les 3 plus belles progressions',1020),'2/2');
+// lun 9/11 20h TikTok : plus belle progression prime 5 (modèle)
+S('b3',{bg:'bl',paper:'rays',mod:true},T('la plus belle progression')+H('Pseudo 🚀',270,120)+`<div class="w" style="left:58px;right:58px;top:470px;text-align:center"><div class="big">49e → 8e</div><div class="lb">en un seul prime (prime 5)</div></div>`+PI('+67 pts sur le prime',860,'son secret ?'),'1/1');
+// mar 10/11 19h IG : les duels, mode d'emploi (connu)
+S('b4',{bg:'pk',paper:'rays'},T('nouveau dans l\'appli')+H('Les duels,|c\'est quoi ? ⚔️',270,100)+CV('tu peux défier un autre joueur sur un prime',600)+`<div class="swipe" style="left:58px;bottom:110px">swipe →</div>`,'1/3');
+S('b5',{bg:'ye'},T('comment ça marche')+CHK([['Gagne ton droit','top 3 du prime ou top 3 des progressions','1'],['Défie un joueur','au classement, avant le prime suivant','2'],['Le plus de points gagne','+5 pts bonus pour le ou la gagnant·e','3']],300)+B('au prime 4, Justine a gagné ses 2 duels',1000),'2/3');
+S('b6',{bg:'mi'},T('à toi')+H('Qui tu|défierais ?',270,120)+CV('tag-le en commentaire 😈',560)+SR('Star AC\' Pronos','lien en bio',700),'3/3');
+// mar 10/11 20h TikTok : épisode 2 (connu)
+S('b7',{bg:'li',paper:'lined'},T('je code une appli pour la Star Ac\' · ép. 2')+H('Le battle est né|d\'une idée de|2 joueuses',270,88)+PI('Vos idées finissent<br>dans l\'appli 💡',720,'onglet Idées')+`<div class="swipe" style="left:58px;bottom:110px">swipe →</div>`,'1/2');
+S('b8',{bg:'bl'},T('ton idée ?')+B('Tu ajouterais quoi dans l\'appli ?',300)+B('Dis-le en commentaire, je lis tout 👀',470,true)+CV('commente STAR AC pour le lien 💌',700)+SR('Star AC\' Pronos','236 joueurs',860),'2/2');
+// mer 11/11 12h story deadline prime 6 (modèle) + 20h TikTok "tes 3 nommés"
+S('b9',{bg:'ye',story:true,mod:true},T('⏰ dernier jour',230)+H('Nommés : |ce soir 18h30',330,100)+`<div class="w" style="left:58px;right:58px;top:640px"><div class="big">95</div><div class="lb">joueurs ont déjà posé leurs 3 nommés. Et toi ?</div></div>`+CHK([['Les 3 nommés','avant 18h30'],['Le top 3 des évals','avant 18h30']],1060)+SR('prime 6 · samedi 14/11','lien en bio',1520));
+S('b10',{bg:'pk',paper:'rays'},T('prime 6 · ce soir 18h30')+H('Tes 3 nommés|en commentaire',270,100)+CV('je fais le bilan après la deadline 👀',600)+CHK([['Nommé·e 1','…'],['Nommé·e 2','…'],['Nommé·e 3','…']],720),'1/1');
+// jeu 12/11 19h Reel IG + 20h TikTok : les fidèles (modèle)
+S('b11',{bg:'mi',paper:'rays',mod:true},T('les fidèles 💛')+H('Ils n\'ont raté|aucun prono',270,100)+`<div class="w" style="left:58px;right:58px;top:600px"><div class="big">42</div><div class="lb">joueurs ont posé tous leurs pronos depuis le prime 1</div></div>`+B('merci, vous êtes le cœur de l\'appli',1000,true),'1/1');
+// ven 13/11 19h IG : le pari fou (modèle) + 20h TikTok bienvenue (modèle)
+S('b12',{bg:'li',mod:true},T('le pari fou de la semaine')+H('Seul·e contre|tous 😅',270,110)+`<div class="w" style="left:58px;right:58px;top:600px"><div class="big" style="font-size:120px">2 %</div><div class="lb">des joueurs voyaient Prénom gagner le battle… et c'est arrivé</div></div>`+B('qui a eu le nez fin ? 👃',1010,true),'1/1');
+S('b13',{bg:'ye',paper:'rays',mod:true},T('bienvenue 👋')+H('12 nouveaux|cette semaine',270,100)+`<div class="w" style="left:58px;right:58px;top:600px;font-weight:800;font-size:54px;line-height:1.5">pseudo1 · pseudo2 · pseudo3 · pseudo4 · …</div>`+CV('il est encore temps de rejoindre la partie',930)+SR('Star AC\' Pronos','lien en bio',1060),'1/1');
+// sam 14/11 17h story ce soir prime 6
+S('b14',{bg:'li',story:true},T('🚨 ce soir',230)+H('Prime 6|21h',330,120)+CV('derniers pronos avant le direct 👇',620)+CHK([['Battle','avant 22h30'],['Éliminé·e','avant 23h30'],['Ton joker ×2','tu le poses ce soir ?']],760)+SR('derniers pronos','lien en bio',1500));
+</script></body></html>

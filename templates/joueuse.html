@@ -1,0 +1,61 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="da.css"><script src="kit.js"></script>
+<style>
+.grid{background-color:var(--bg);background-image:linear-gradient(rgba(150,140,200,.16) 2px,transparent 2px),linear-gradient(90deg,rgba(150,140,200,.16) 2px,transparent 2px);background-size:54px 54px}
+.lined{background-color:var(--bg);background-image:linear-gradient(transparent 62px,rgba(150,140,220,.30) 62px,rgba(150,140,220,.30) 64px,transparent 64px);background-size:100% 64px}
+.margin{position:absolute;left:118px;top:0;bottom:0;width:3px;background:rgba(240,150,190,.55)}
+.holes{position:absolute;left:34px;top:0;bottom:0;width:30px}
+.holes b{position:absolute;left:0;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:inset 0 2px 4px rgba(0,0,0,.12)}
+.card{position:absolute;background:#fff;border-radius:40px;box-shadow:0 10px 26px rgba(120,60,90,.10)}
+.w{position:absolute;background:#fff;border-radius:40px;padding:34px 36px;box-shadow:0 8px 22px rgba(120,60,90,.10)}
+.w .big{font-weight:800;font-size:96px;line-height:1}
+.w .big small{font-size:52px}
+.w .lb{font-family:H;font-size:38px;line-height:1.35;margin-top:22px}
+.notif{position:absolute;background:#fff;border-radius:34px;padding:26px 30px;display:flex;align-items:center;gap:22px;box-shadow:0 8px 22px rgba(120,60,90,.12)}
+.notif .ic{width:64px;height:64px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:34px;flex:none}
+.postit{position:absolute;background:#FFF3A6;padding:60px 52px;box-shadow:0 14px 26px rgba(90,60,40,.18)}
+.step{display:flex;align-items:center;gap:26px;font-family:H;font-size:50px;margin-bottom:46px}
+.step i{width:46px;height:46px;border:4px solid var(--ink);border-radius:8px;font-style:normal;font-family:P;font-weight:700;font-size:30px;display:grid;place-items:center;flex:none}
+.mod{position:absolute;right:52px;bottom:118px;border:3px dashed var(--mag);color:var(--mag);font-family:H;font-size:30px;padding:6px 16px;border-radius:12px;transform:rotate(4deg);background:rgba(255,255,255,.6)}
+.foot{position:absolute;left:58px;bottom:50px;font-family:H;font-size:30px;opacity:.75}
+
+.av{width:150px;height:150px;border-radius:50%;background:var(--gold);border:6px solid #fff;box-shadow:0 10px 24px rgba(90,40,50,.18);display:grid;place-items:center;font-weight:800;font-size:76px;flex:none}
+</style></head><body>
+<div class="s lined" id="j1" style="--bg:var(--yellow)"></div>
+<div class="s grid" id="j2" style="--bg:var(--mint)"></div>
+<div class="s grid" id="j3" style="--bg:var(--blue)"></div>
+<script>
+// Joueuse de la semaine (2026-11-02), V4 dans la DA du récap validé (recap.html).
+// node shot.js joueuse.html j1 j2 j3
+const D={pseudo:'Laurine49',ini:'L',pts_prime:'71',prime:'4',total:'165',avant:'94',prochain:'5'};
+const F='<div class="foot">Appli de fans non officielle</div>';
+const N=n=>`<div class="num" style="bottom:50px">${n}/3</div>`;
+const $=(id,h)=>document.getElementById(id).innerHTML=h;
+const X=150; // marge commune (après la marge rose du cahier)
+
+$('j1',PAPER+'<div class="margin"></div><div class="holes">'+[170,415,660,905,1150].map(t=>`<b style="top:${t}px"></b>`).join('')+'</div>'+LOGO.replace('class="logo"','class="logo" style="left:150px"')+STAR(850,100,170,12)+SPARK(990,560,40)+SPARK(960,1060,36)+`
+<div class="tape pk" style="left:${X}px;top:205px;width:220px;background:repeating-linear-gradient(135deg,rgba(255,170,205,.85) 0 22px,rgba(255,215,230,.85) 22px 44px)"></div>
+<div style="position:absolute;left:${X}px;top:300px"><span class="tag">la joueuse de la semaine</span></div>
+<div class="card" style="left:${X}px;top:430px;width:780px;height:300px;transform:rotate(-1.5deg)">
+<div style="position:absolute;left:44px;top:75px;display:flex;align-items:center;gap:34px"><div class="av">${D.ini}</div>
+<div><div style="font-family:C;font-weight:700;font-size:120px;line-height:.9">${D.pseudo}</div>
+<div class="hand" style="font-size:38px;margin-top:10px">1re au classement général 🏆</div></div></div></div>
+<h1 style="position:absolute;left:${X}px;top:800px;width:900px;font-size:104px"><span class="hl">seule en tête</span> 👑</h1>
+<div class="hand" style="position:absolute;left:${X+10}px;top:950px;font-size:52px;transform:rotate(-2deg)">record du prime ${D.prime} ↘</div>
+<div class="swipe" style="left:${X}px;bottom:110px">swipe →</div>`+F.replace('class="foot"','class="foot" style="left:150px"')+N(1));
+
+$('j2',PAPER+LOGO+STAR(40,1160,96,-8)+`
+<div class="search" style="position:absolute;left:58px;right:58px;top:160px;padding:26px 30px;font-size:40px">🔍 <span class="q">${D.pseudo} · prime ${D.prime}</span></div>
+<div class="w" style="left:58px;top:320px;width:470px;height:300px"><div class="big">${D.pts_prime}<small> pts</small></div><div class="lb">sur le prime ${D.prime}, le meilleur score</div></div>
+<div class="w" style="left:552px;top:320px;width:470px;height:300px"><div class="big">1<small>re</small></div><div class="lb">au classement général, toute seule</div></div>
+<div class="w" style="left:58px;top:650px;width:964px;height:300px"><div class="big" style="color:var(--mag)">${D.total}<small> pts</small></div><div class="lb">au classement général après ${D.prime} primes</div></div>
+<div class="notif" style="left:58px;right:58px;top:985px"><div class="ic">🏆</div><div><div style="font-weight:700;font-size:36px">Meilleure du prime : ${D.pseudo}</div><div style="font-size:28px;opacity:.6">${D.pts_prime} pts sur le prime ${D.prime}</div></div></div>`+F+N(2));
+
+$('j3',PAPER+LOGO+STAR(830,430,140,16)+SPARK(980,300,40)+`
+<h1 style="position:absolute;left:58px;top:200px;width:960px;font-size:84px"><span class="hl">Prime ${D.prochain} :</span><br><span class="hl">vise sa place</span></h1>
+<div style="position:absolute;left:80px;top:545px">
+<div class="step"><i>1</i>le lien est en bio</div>
+<div class="step"><i>2</i>abonne-toi à @zapp.pronos</div>
+<div class="step"><i>3</i>pose tes pronos du prime ${D.prochain}</div></div>
+<div class="bubble them" style="position:absolute;left:58px;top:900px;width:820px">envoie-le à la personne avec qui tu regardes le prime 👀</div>
+<div class="sticker" style="position:absolute;left:58px;top:1110px;transform:rotate(-3deg);font-size:34px;padding:16px 30px">et toi, tu serais à quelle place ?</div>`+F+N(3));
+</script></body></html>

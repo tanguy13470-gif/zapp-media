@@ -7,26 +7,31 @@
 .logo{left:90px;top:250px}
 .card{position:absolute;left:80px;right:80px;background:#fff;border-radius:44px;padding:28px 40px 30px;box-shadow:0 10px 26px rgba(80,90,140,.12)}
 .card .ti{font-family:C;font-weight:700;font-size:52px;color:var(--mag);padding-bottom:14px;border-bottom:3px solid #eee}
-.row{display:flex;align-items:center;gap:26px;height:102px;border-bottom:3px solid #eee}
+.row{display:flex;align-items:center;gap:22px;height:102px;border-bottom:3px solid #eee}
 .row:nth-last-child(2){border-bottom:none}
 .md{width:84px;height:84px;border-radius:50%;background:var(--gold);border:4px solid var(--ink);display:grid;place-items:center;font-size:46px;flex:none}
 .nm{font-weight:800;font-size:46px;white-space:nowrap}
+.ar{font-family:P;font-weight:700;font-size:28px;white-space:nowrap;padding:4px 14px;border-radius:999px}
+.ar.up{color:#1F7A4D;background:#D9F4E7}.ar.dn{color:#B23A3A;background:#FFE1E1}.ar.eq{color:#7d726c;background:#F1EEEA}.ar.new{color:#fff;background:var(--mag)}
 .pt{margin-left:auto;font-weight:800;font-size:56px;color:var(--mag);white-space:nowrap}
 .pt small{font-size:36px}
 .cm{font-family:C;font-weight:700;font-size:40px;line-height:1.15;margin-top:10px}
+.ft{position:absolute;left:0;right:0;bottom:120px;text-align:center;font-family:H;font-size:30px;opacity:.6}
 </style></head><body>
 <div class="s tt" id="s1" style="--bg:var(--blue)"></div>
 <script>
-const row=(m,n,p)=>`<div class="row"><div class="md">${m}</div><div class="nm">${n}</div><div class="pt">${p}<small> pts</small></div></div>`;
+const row=(m,n,p,a)=>`<div class="row"><div class="md">${m}</div><div class="nm">${n}</div>${a}<div class="pt">${p}<small> pts</small></div></div>`;
+const EQ='<span class="ar eq">=</span>',UP=n=>`<span class="ar up">▲ +${n}</span>`,DN=n=>`<span class="ar dn">▼ -${n}</span>`,NEW='<span class="ar new">nouveau</span>';
 document.getElementById('s1').innerHTML='<div class="bgl"></div>'+PAPER+LOGO+STAR(830,215,180,14)+SPARK(60,1840,46)+SPARK(905,1830,56)+`
 <div style="position:absolute;left:80px;top:318px"><span class="tag" style="font-size:36px;padding:12px 28px">Prime 4 · classement</span></div>
 <h1 style="position:absolute;left:80px;top:410px;font-size:118px;white-space:nowrap"><span class="hl">Le podium</span> 🏆</h1>
 <div class="card" style="top:570px">
 <div class="ti">En individuel</div>
-${row('🥇','Laurine49','165')}${row('🥈','cathycrtl','143')}${row('🥉','melanielty','132')}
-<div class="cm">Laurine49 seule en tête avec 22 pts d'avance 👑</div></div>
-<div class="card" style="top:1115px">
+${row('🥇','Laurine49','165',EQ)}${row('🥈','cathycrtl','143',DN(1))}${row('🥉','melanielty','132',EQ)}
+<div class="cm">Laurine49 règne seule, 22 pts d'avance : cathycrtl a dû rendre sa moitié de couronne 👑</div></div>
+<div class="card" style="top:1155px">
 <div class="ti">Par équipe</div>
-${row('🥇','Les pros du micros','644')}${row('🥈','La star ac’ teams','404')}${row('🥉','SENSAS TEAM','333')}
-<div class="cm">Le podium tient bon, et YVORRA FAMILY grimpe 4e 🔥</div></div>`;
+${row('🥇','LES BEST','119',EQ)}${row('🥈','Quart Sud','98,5',UP(1))}${row('🥉','🤩🤩🤩🤩','93',NEW)}
+<div class="cm">LES BEST indétrônables, Quart Sud grimpe et les 🤩🤩🤩🤩 débarquent avec des étoiles plein les yeux ✨</div></div>
+<div class="ft">équipes : moyenne des points des membres · évolution depuis le prime 3</div>`;
 </script></body></html>

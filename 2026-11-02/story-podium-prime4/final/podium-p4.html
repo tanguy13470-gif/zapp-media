@@ -1,0 +1,32 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="da.css"><script src="kit.js"></script>
+<style>
+.bgl{position:absolute;inset:0;background:
+ linear-gradient(115deg,transparent 30%,rgba(255,255,255,.35) 30.2%,transparent 30.6%),
+ linear-gradient(60deg,transparent 62%,rgba(255,255,255,.3) 62.2%,transparent 62.6%),
+ linear-gradient(140deg,transparent 78%,rgba(255,255,255,.3) 78.2%,transparent 78.6%)}
+.logo{left:90px;top:250px}
+.card{position:absolute;left:80px;right:80px;background:#fff;border-radius:44px;padding:28px 40px 30px;box-shadow:0 10px 26px rgba(80,90,140,.12)}
+.card .ti{font-family:C;font-weight:700;font-size:52px;color:var(--mag);padding-bottom:14px;border-bottom:3px solid #eee}
+.row{display:flex;align-items:center;gap:26px;height:102px;border-bottom:3px solid #eee}
+.row:nth-last-child(2){border-bottom:none}
+.md{width:84px;height:84px;border-radius:50%;background:var(--gold);border:4px solid var(--ink);display:grid;place-items:center;font-size:46px;flex:none}
+.nm{font-weight:800;font-size:46px;white-space:nowrap}
+.pt{margin-left:auto;font-weight:800;font-size:56px;color:var(--mag);white-space:nowrap}
+.pt small{font-size:36px}
+.cm{font-family:C;font-weight:700;font-size:40px;line-height:1.15;margin-top:10px}
+</style></head><body>
+<div class="s tt" id="s1" style="--bg:var(--blue)"></div>
+<script>
+const row=(m,n,p)=>`<div class="row"><div class="md">${m}</div><div class="nm">${n}</div><div class="pt">${p}<small> pts</small></div></div>`;
+document.getElementById('s1').innerHTML='<div class="bgl"></div>'+PAPER+LOGO+STAR(830,215,180,14)+SPARK(60,1840,46)+SPARK(905,1830,56)+`
+<div style="position:absolute;left:80px;top:318px"><span class="tag" style="font-size:36px;padding:12px 28px">Prime 4 · classement</span></div>
+<h1 style="position:absolute;left:80px;top:410px;font-size:118px;white-space:nowrap"><span class="hl">Le podium</span> 🏆</h1>
+<div class="card" style="top:570px">
+<div class="ti">En individuel</div>
+${row('🥇','Laurine49','165')}${row('🥈','cathycrtl','143')}${row('🥉','melanielty','132')}
+<div class="cm">Laurine49 seule en tête avec 22 pts d'avance 👑</div></div>
+<div class="card" style="top:1115px">
+<div class="ti">Par équipe</div>
+${row('🥇','Les pros du micros','644')}${row('🥈','La star ac’ teams','404')}${row('🥉','SENSAS TEAM','333')}
+<div class="cm">Le podium tient bon, et YVORRA FAMILY grimpe 4e 🔥</div></div>`;
+</script></body></html>

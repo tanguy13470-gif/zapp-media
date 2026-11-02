@@ -8,7 +8,7 @@
 .widget .big{font-weight:800;font-size:110px;line-height:1;letter-spacing:-2px}
 .widget .lab{font-family:H;font-size:40px;margin-top:10px}
 .notif{background:#fff;border-radius:34px;padding:24px 30px;display:flex;align-items:center;gap:22px;box-shadow:0 8px 22px rgba(120,60,90,.12);margin-bottom:22px}
-.notif .ic{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;font-size:40px;font-weight:800;background:var(--gold)}
+.notif .ic{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;font-size:40px;font-weight:800;background:var(--gold)}
 .notif .pc{margin-left:auto;font-weight:800;font-size:54px;color:var(--mag)}
 .chk{display:flex;align-items:center;gap:26px;font-family:H;font-size:54px;min-height:104px;line-height:1.1}
 .chk b{flex:none;width:52px;height:52px;border:4px solid var(--ink);border-radius:10px;display:grid;place-items:center;font-family:P;font-size:36px;background:#fff}
@@ -58,18 +58,21 @@ mk('ep1','grid','var(--pink)',LOGO+STAR(880,60,160,14)+SPARK(990,430,44)+`
 <h1 style="position:absolute;left:58px;top:390px;width:960px;font-size:104px"><span class="hl">229 joueurs</span><br><span class="hl">plus tard…</span></h1>
 <div class="bubble them" style="position:absolute;left:58px;top:760px;width:560px;transform:rotate(-1deg)">tout est parti d'une vidéo, un soir d'octobre 📱</div>
 <div class="typing" style="position:absolute;left:58px;top:1000px"><b></b><b></b><b></b></div>`
-+PB('moi_selfie.png','right',0,430)+SW+FOOT(1,6));
++`<div style="position:absolute;right:70px;top:660px;width:420px;height:420px;border-radius:50%;border:12px solid #fff;overflow:hidden;box-shadow:0 12px 26px rgba(90,40,50,.22);transform:rotate(3deg)"><img src="moi_selfie_full.jpg" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%"></div><div class="tape pk" style="left:690px;top:640px;transform:rotate(-8deg)"></div>`+SW+FOOT(1,6));
 
 /* 2. Nommés prime 5 (Reel + TikTok) : MODÈLE. Les photos des 3 vrais nommés-par-les-joueurs
    s'ajoutent quand la deadline est passée (remplir N, sinon aucune photo n'est affichée). */
-const N=[]; // ex. après la deadline : [['noemie','Noémie','64 %'],['cameron','Cameron','51 %'],['zoe','Zoé','38 %']]
-const ROW=(r,i,top)=>`<div style="position:absolute;left:58px;right:58px;top:${top+i*124}px;height:108px;background:#fff;border-radius:30px;display:flex;align-items:center;gap:22px;padding:0 34px 0 ${r[3]?'14px':'34px'};box-shadow:0 8px 20px rgba(120,60,90,.12)">${r[3]?`<img src="candidats/${r[3]}.png" style="width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:top;background:#FFF1B4;border:4px solid #FFF1B4">`:`<div style="width:70px;height:70px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:34px;background:#FFF1B4">${r[0]}</div>`}<div style="font-weight:800;font-size:42px">${r[1]}</div><div style="margin-left:auto;font-weight:800;font-size:44px;color:var(--mag)">${r[2]}</div></div>`;
+/* Variables (champs du Studio n1/p1, n2/p2, n3/p3) : la photo suit le prénom automatiquement. Valeurs d'exemple ci-dessous. */
+const V={nb:'90',n1:'Noémie',p1:'64',n2:'Cameron',p2:'51',n3:'Zoé',p3:'38'};
+const slug=x=>x.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
+const N=[[V.n1,V.p1],[V.n2,V.p2],[V.n3,V.p3]].map(([n,p])=>[slug(n),n,p+' %']);
+const ROW=(r,i,top)=>`<div style="position:absolute;left:58px;right:58px;top:${top+i*124}px;height:108px;background:#fff;border-radius:30px;display:flex;align-items:center;gap:22px;padding:0 34px 0 ${r[3]?'14px':'34px'};box-shadow:0 8px 20px rgba(120,60,90,.12)">${r[3]?`<img src="candidats/${r[3]}.png" style="width:92px;height:92px;border-radius:50%;object-fit:cover;object-position:top;background:#FFF1B4;border:4px solid #FFF1B4">`:`<div style="width:70px;height:70px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:34px;background:#FFF1B4">${r[0]}</div>`}<div style="font-weight:800;font-size:42px">${r[1]}</div><div style="margin-left:auto;font-weight:800;font-size:44px;color:var(--mag)">${r[2]}</div></div>`;
 const NR=N.length?N.map((x,i)=>[i+1,x[1],x[2],x[0]]):[[1,'Prénom 1','64 %'],[2,'Prénom 2','51 %'],[3,'Prénom 3','38 %']];
 mk('nom5','grid','var(--pink)',LOGO+STAR(880,60,140,12)+`
 <div style="position:absolute;left:58px;top:170px"><span class="tag">prime 5 · les nommés</span></div>
 <h1 style="position:absolute;left:58px;top:270px;width:960px;font-size:96px;line-height:1.1"><span class="hl">Qui les joueurs</span><br><span class="hl">voient nommés ?</span></h1>`
 +EM('🔮',880,420,100,10)
-+`<div class="cv" style="position:absolute;left:66px;top:560px;font-size:56px;transform:rotate(-2deg)">90 joueurs ont voté, voici leur top 3 👇</div>`
++`<div class="cv" style="position:absolute;left:66px;top:560px;font-size:56px;transform:rotate(-2deg)">${V.nb} joueurs ont voté, voici leur top 3 👇</div>`
 +NR.map((r,i)=>ROW(r,i,680)).join('')
 +`<div class="bubble me" style="position:absolute;right:58px;top:1080px;width:600px">tu es d'accord avec eux ?</div>`+MOD);
 
@@ -78,9 +81,9 @@ mk('chou','grid','var(--pink)',LOGO+STAR(880,60,140,12)+`
 <div style="position:absolute;left:58px;top:170px"><span class="tag">le chouchou des joueurs</span></div>
 <h1 style="position:absolute;left:58px;top:270px;width:960px;font-size:120px;line-height:1.05"><span class="hl">À 1 voix</span><br><span class="hl">près 😱</span></h1>
 <div class="cv" style="position:absolute;left:66px;top:575px;font-size:54px;transform:rotate(-2deg)">173 joueurs ont choisi leur chouchou dans l'appli</div>
-<div class="w" style="position:absolute;left:58px;top:690px;width:440px;background:#fff;border-radius:40px;padding:26px 36px;box-shadow:0 8px 22px rgba(120,60,90,.10)"><div style="font-weight:800;font-size:110px;line-height:1;color:var(--mag)">42</div><div style="font-family:H;font-size:40px;margin-top:8px">voix pour Noémie 💛</div></div>
-<div class="w" style="position:absolute;right:58px;top:690px;width:440px;background:#fff;border-radius:40px;padding:26px 36px;box-shadow:0 8px 22px rgba(120,60,90,.10)"><div style="font-weight:800;font-size:110px;line-height:1;color:var(--mag)">41</div><div style="font-family:H;font-size:40px;margin-top:8px">voix pour Cameron 💙</div></div>`
-+PB(C('noemie'),'left',0,330)+PB(C('cameron'),'right',0,330)+SWC+FOOT(1,3));
+<div class="w" style="position:absolute;left:58px;top:670px;width:440px;background:#fff;border-radius:40px;padding:26px 36px;box-shadow:0 8px 22px rgba(120,60,90,.10)"><div style="font-weight:800;font-size:110px;line-height:1;color:var(--mag)">42</div><div style="font-family:H;font-size:40px;margin-top:8px">voix pour Noémie 💛</div></div>
+<div class="w" style="position:absolute;right:58px;top:670px;width:440px;background:#fff;border-radius:40px;padding:26px 36px;box-shadow:0 8px 22px rgba(120,60,90,.10)"><div style="font-weight:800;font-size:110px;line-height:1;color:var(--mag)">41</div><div style="font-family:H;font-size:40px;margin-top:8px">voix pour Cameron 💙</div></div>`
++PB(C('noemie'),'left',40,420)+PB(C('cameron'),'right',0,420)+`<div class="tw" style="left:0;top:1240px;width:1080px;height:110px"><div class="dots" style="clip-path:${tornPoly(1080,110,13)};background-color:#FFF1B4"></div></div>`+SWC+FOOT(1,3));
 
 /* 4. Club des 11 (ven 6/11) — Antoine, Maud, Ydriss = les 3 vrais nommés du prime 4 (vérifié) */
 const CLUB=(id,line)=>mk(id,'grid','var(--yellow)',LOGO+STAR(880,60,140,-10)+`
@@ -96,7 +99,7 @@ CLUB('clubp','cathycrtl, Grevinou, Julastar + 8 autres<br>ont trouvé les 3 nomm
 mk('team','grid','var(--mint)',LOGO+STAR(880,60,140,10)+`
 <div style="position:absolute;left:58px;top:170px"><span class="tag">la team de la semaine</span></div>
 <h1 style="position:absolute;left:58px;top:270px;width:960px;font-size:110px;line-height:1.05"><span class="hl">🔥 NOM DE</span><br><span class="hl">LA TEAM</span></h1>
-<div style="position:absolute;left:58px;top:600px;width:560px;background:#fff;border-radius:40px;padding:30px 38px;box-shadow:0 8px 22px rgba(120,60,90,.10)"><div style="font-weight:800;font-size:110px;line-height:1;color:var(--mag)">12e → 6e</div><div style="font-family:H;font-size:40px;margin-top:10px">au classement des teams après le prime 5</div></div>
-<div class="bubble me" style="position:absolute;left:58px;top:960px;width:500px">tag ta team en commentaire 👇</div>`
-+PB('moi_top.png','right',0,470)+MOD);
+<div style="position:absolute;left:58px;top:880px;width:560px;z-index:2;background:#fff;border-radius:40px;padding:30px 38px;box-shadow:0 8px 22px rgba(120,60,90,.10)"><div style="font-weight:800;font-size:110px;line-height:1;color:var(--mag)">12e → 6e</div><div style="font-family:H;font-size:40px;margin-top:10px">au classement des teams après le prime 5</div></div>
+<div class="bubble me" style="position:absolute;left:58px;top:1180px;width:600px;z-index:2">tag ta team en commentaire 👇</div>`
++PB('moi_top.png','right',0,580)+MOD);
 </script></body></html>

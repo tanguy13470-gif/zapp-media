@@ -1,0 +1,114 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="da.css"><script src="kit.js"></script>
+<style>
+.lined{background-color:var(--bg);background-image:linear-gradient(90deg,transparent 118px,rgba(232,120,160,.35) 118px,rgba(232,120,160,.35) 121px,transparent 121px),repeating-linear-gradient(transparent 0 62px,rgba(120,150,220,.22) 62px 64px)}
+.grid{background-color:var(--bg);background-image:linear-gradient(rgba(150,140,200,.16) 2px,transparent 2px),linear-gradient(90deg,rgba(150,140,200,.16) 2px,transparent 2px);background-size:54px 54px}
+.cv{font-family:C;font-weight:700}
+.postit{position:absolute;background:#FFF3A6;padding:40px 44px;box-shadow:0 14px 26px rgba(90,60,40,.18)}
+.widget{background:#fff;border-radius:40px;padding:34px 36px;box-shadow:0 10px 26px rgba(110,80,140,.13);position:absolute}
+.widget .big{font-weight:800;font-size:110px;line-height:1;letter-spacing:-2px}
+.widget .lab{font-family:H;font-size:40px;margin-top:10px}
+.notif{background:#fff;border-radius:34px;padding:24px 30px;display:flex;align-items:center;gap:22px;box-shadow:0 8px 22px rgba(120,60,90,.12);margin-bottom:22px}
+.notif .ic{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;font-size:40px;font-weight:800;background:var(--gold)}
+.notif .pc{margin-left:auto;font-weight:800;font-size:54px;color:var(--mag)}
+.chk{display:flex;align-items:center;gap:26px;font-family:H;font-size:54px;min-height:104px;line-height:1.1}
+.chk b{flex:none;width:52px;height:52px;border:4px solid var(--ink);border-radius:10px;display:grid;place-items:center;font-family:P;font-size:36px;background:#fff}
+.mod{position:absolute;right:52px;bottom:130px;transform:rotate(6deg);background:#fff;border:3px dashed var(--mag);color:var(--mag);font-family:H;font-size:30px;padding:6px 18px;border-radius:12px}
+.av{width:150px;height:150px;border-radius:50%;background:var(--gold);border:6px solid #fff;box-shadow:0 10px 24px rgba(90,40,50,.2);display:grid;place-items:center;font-weight:800;font-size:76px}
+.holes{position:absolute;left:34px;top:0;bottom:0;width:40px;display:flex;flex-direction:column;justify-content:space-around;padding:60px 0}
+.holes i{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:inset 0 3px 4px rgba(0,0,0,.12)}
+.em{position:absolute;line-height:1;filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 12px 14px rgba(90,40,50,.25))}
+.rays{position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 50% 46%,rgba(255,255,255,.55) 0 7deg,rgba(255,255,255,0) 7deg 15deg)}
+.torn{position:absolute;box-shadow:none}
+.tw{position:absolute;filter:drop-shadow(0 10px 16px rgba(90,60,70,.22))}
+.tw>div{width:100%;height:100%}
+.dots{background-image:radial-gradient(rgba(179,45,114,.28) 7px,transparent 8px);background-size:46px 46px}
+.stripes{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.7) 0 18px,rgba(255,255,255,0) 18px 36px)}
+.scribble{position:absolute;stroke:var(--mag);fill:none;stroke-width:7;stroke-linecap:round}
+</style></head><body>
+<div id="all"></div>
+<script>
+
+function tornPoly(w,h,seed){let r=seed;const rnd=()=>{r=(r*9301+49297)%233280;return r/233280};const pts=[];
+ for(let x=0;x<=w;x+=34)pts.push(`${x}px ${Math.round(rnd()*14)}px`);
+ for(let y=0;y<=h;y+=40)pts.push(`${w-Math.round(rnd()*10)}px ${y}px`);
+ for(let x=w;x>=0;x-=34)pts.push(`${x}px ${h-Math.round(rnd()*16)}px`);
+ for(let y=h;y>=0;y-=40)pts.push(`${Math.round(rnd()*10)}px ${y}px`);
+ return `polygon(${pts.join(',')})`}
+const TORN=(x,y,w,h,bg,rot,seed,extra)=>`<div class="tw" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;transform:rotate(${rot}deg)"><div style="background:${bg};clip-path:${tornPoly(w,h,seed)};${extra||''}"></div></div>`;
+const SQUIG=(x,y,w,rot)=>`<svg class="scribble" style="left:${x}px;top:${y}px;width:${w}px;height:50px;transform:rotate(${rot}deg)" viewBox="0 0 300 50"><path d="M5 25 Q30 0 55 25 T105 25 T155 25 T205 25 T255 25 T295 25"/></svg>`;
+const HEART=(x,y,sz,rot)=>`<div class="em" style="left:${x}px;top:${y}px;font-size:${sz}px;transform:rotate(${rot}deg)">💖</div>`;
+const FOOT=(n,t)=>`<div class="num">${n}/${t}</div>`;
+const MOD=`<div class="mod">modèle</div>`;
+const slides={};
+const mk=(id,cls,bg,html)=>{const d=document.createElement('div');d.className='s '+cls;d.id=id;d.style.setProperty('--bg',bg);d.innerHTML=PAPER+html;document.getElementById('all').appendChild(d)};
+const SW=`<div class="swipe">glisse →</div>`;
+
+/* Photos d'élèves détourées : candidats/<prenom sans accent>.png (source : site de l'appli /candidates/<prenom>.jpg) */
+const P=(n,x,y,w,rot,extra)=>`<img src="candidats/${n}.png" style="position:absolute;left:${x}px;top:${y}px;width:${w}px;transform:rotate(${rot||0}deg);filter:drop-shadow(0 16px 20px rgba(60,40,90,.28));${extra||''}">`;
+const ME=(f,x,y,w,rot)=>`<img src="${f}" style="position:absolute;left:${x}px;top:${y}px;width:${w}px;transform:rotate(${rot||0}deg);filter:drop-shadow(0 16px 20px rgba(60,40,90,.28))">`;
+const EM=(e,x,y,s,r)=>`<div class="em" style="left:${x}px;top:${y}px;font-size:${s}px;transform:rotate(${r}deg)">${e}</div>`;
+const LBL=(t,x,y,r,bg)=>`<div style="position:absolute;left:${x}px;top:${y}px;transform:rotate(${r}deg);background:${bg||'#fff'};border-radius:18px;padding:8px 22px;font-weight:800;font-size:40px;box-shadow:0 8px 18px rgba(90,40,50,.18)">${t}</div>`;
+const YH=t=>`<span class="hl" style="background:linear-gradient(transparent 12%,#FFF1B4 12%,#FFF1B4 92%,transparent 92%)">${t}</span>`;
+
+/* 1. TikTok ép.1 (mar 3/11) */
+mk('ep1','','#FFD7E5',TORN(30,150,1020,560,'#fff',-1.2,71,'')+TORN(0,760,1080,600,'#D4E5FF',0,73,'')+`<div class="tw" style="left:0;top:1060px;width:1080px;height:290px"><div class="dots" style="clip-path:${tornPoly(1080,290,9)};background-color:#FFF1B4"></div></div>`+LOGO.replace('class="logo"','class="logo" style="top:62px"')+STAR(890,40,150,14)+`
+<div class="tape pk" style="left:90px;top:128px;transform:rotate(-6deg)"></div>
+<div style="position:absolute;left:80px;top:190px"><span class="tag">épisode 1</span></div>
+<div class="hand" style="position:absolute;left:84px;top:280px;font-size:48px;color:var(--mag)">je code une appli pour la Star Ac'</div>
+<h1 style="position:absolute;left:80px;top:370px;width:930px;font-size:104px;line-height:1.08">${YH('229 joueurs')}<br>${YH('plus tard…')}</h1>`
++ME('moi_selfie.png',560,610,470,5)
++EM('💻',70,800,170,-10)+EM('📱',330,860,120,12)+EM('✨',420,790,90,0)
++`<div class="bubble them" style="position:absolute;left:58px;top:1020px;width:500px;transform:rotate(-2deg);font-size:34px">tout est parti d'une vidéo, un soir d'octobre</div>`+SW+FOOT(1,6));
+
+/* 2. Reel/TikTok nommés prime 5 (mer 4/11) — modèle : remplacer N par le vrai top 3 */
+const N=[['noemie','Noémie','64 %'],['cameron','Cameron','51 %'],['zoe','Zoé','38 %']];
+mk('nom5','','#EFE6FF',TORN(30,140,1020,470,'#fff',1,81,'')+TORN(0,640,1080,710,'#FFD7E5',0,83,'')+`<div class="tw" style="left:0;top:1120px;width:1080px;height:230px"><div class="dots" style="clip-path:${tornPoly(1080,230,3)};background-color:#FFF1B4"></div></div>`+LOGO.replace('class="logo"','class="logo" style="top:62px"')+STAR(890,40,140,-10)+`
+<div class="tape bl" style="left:820px;top:120px;transform:rotate(6deg)"></div>
+<div style="position:absolute;left:80px;top:185px"><span class="tag">prime 5 · les nommés</span></div>
+<h1 style="position:absolute;left:80px;top:285px;width:930px;font-size:92px;line-height:1.08">${YH('Qui les joueurs')}<br>${YH('voient nommés ?')}</h1>`
++EM('🔮',880,500,110,10)
++P(N[1][0],20,700,370,-5)+P(N[2][0],700,700,370,5)+P(N[0][0],340,640,420,0)
++LBL('🥇 '+N[0][1]+' · '+N[0][2],350,1190,-2,'#fff')+LBL(N[1][1]+' · '+N[1][2],40,1100,-5,'#fff')+LBL(N[2][1]+' · '+N[2][2],740,1100,4,'#fff')
++EM('😬',60,620,110,-12)+EM('👀',930,640,100,10)+MOD);
+
+/* 3. Carrousel chouchou (jeu 5/11) — vrais chiffres au 1/11 */
+mk('chou','','#FFF1B4',TORN(30,140,1020,440,'#fff',-1,91,'')+TORN(0,610,1080,740,'#D4E5FF',0,93,'')+LOGO.replace('class="logo"','class="logo" style="top:62px"')+STAR(890,40,140,12)+`
+<div class="tape pk" style="left:90px;top:120px;transform:rotate(-6deg)"></div>
+<div style="position:absolute;left:80px;top:185px"><span class="tag">le chouchou des joueurs</span></div>
+<h1 style="position:absolute;left:80px;top:280px;width:700px;font-size:120px;line-height:1.02">${YH('À 1 voix')}<br>${YH('près')}</h1>`
++EM('😱',560,390,150,8)
++P('noemie',10,660,470,-4)+P('cameron',600,660,470,4)
++`<div style="position:absolute;left:470px;top:820px;width:140px;height:140px;border-radius:50%;background:var(--mag);color:#fff;display:grid;place-items:center;font-weight:800;font-size:56px;transform:rotate(-8deg);box-shadow:0 10px 22px rgba(90,40,50,.25);border:6px solid #fff">VS</div>`
++LBL('💛 Noémie · 42 voix',40,1150,-3)+LBL('💙 Cameron · 41 voix',580,1150,3)
++EM('💛',60,640,100,-12)+EM('💙',940,640,100,12)+SW+FOOT(1,3));
+
+/* 4. TikTok club des 11 (ven 6/11) */
+mk('club','','#D9F4E7',TORN(30,140,1020,520,'#fff',1,101,'')+TORN(0,700,1080,650,'#FFF1B4',0,103,'')+LOGO.replace('class="logo"','class="logo" style="top:62px"')+STAR(890,40,140,-12)+`
+<div class="tape bl" style="left:780px;top:120px;transform:rotate(6deg)"></div>
+<div style="position:absolute;left:80px;top:185px"><span class="tag">prime 4 · le club des 11</span></div>
+<h1 style="position:absolute;left:80px;top:280px;width:930px;font-size:110px;line-height:1.05">${YH('11 joueurs')}<br>${YH('sur 90 👑')}</h1>
+<div class="cv" style="position:absolute;left:86px;top:540px;font-size:54px;transform:rotate(-2deg)">ont trouvé les 3 nommés du prime 4</div>`
++P('antoine',10,740,360,-5)+P('ydriss',710,740,360,5)+P('maud',345,700,390,0)
++LBL('Antoine',70,1130,-5)+LBL('Maud',440,1150,-1)+LBL('Ydriss',790,1130,5)
++EM('👑',420,610,120,-8)+EM('🎯',60,650,100,-10)+EM('✅',930,660,90,10)+SW+FOOT(1,3));
+
+/* 4b. même cover, version pseudos */
+mk('clubp','','#D9F4E7',TORN(30,140,1020,520,'#fff',1,101,'')+TORN(0,700,1080,650,'#FFF1B4',0,103,'')+LOGO.replace('class="logo"','class="logo" style="top:62px"')+STAR(890,40,140,-12)+`
+<div class="tape bl" style="left:780px;top:120px;transform:rotate(6deg)"></div>
+<div style="position:absolute;left:80px;top:185px"><span class="tag">prime 4 · le club des 11</span></div>
+<h1 style="position:absolute;left:80px;top:280px;width:930px;font-size:110px;line-height:1.05">${YH('11 joueurs')}<br>${YH('sur 90 👑')}</h1>
+<div class="cv" style="position:absolute;left:86px;top:530px;font-size:46px;line-height:1.1;transform:rotate(-2deg);width:900px">cathycrtl, Grevinou, Julastar + 8 autres<br>ont trouvé les 3 nommés du prime 4</div>`
++P('antoine',10,740,360,-5)+P('ydriss',710,740,360,5)+P('maud',345,700,390,0)
++LBL('Antoine',70,1130,-5)+LBL('Maud',440,1150,-1)+LBL('Ydriss',790,1130,5)
++EM('🎯',60,650,100,-10)+EM('✅',930,660,90,10)+SW+FOOT(1,3));
+
+/* 5. Team de la semaine (dim 8/11) — modèle */
+mk('team','','#D4E5FF',TORN(30,140,1020,470,'#fff',-1,111,'')+TORN(0,640,1080,710,'#D9F4E7',0,113,'')+`<div class="tw" style="left:0;top:1110px;width:1080px;height:240px"><div class="dots" style="clip-path:${tornPoly(1080,240,7)};background-color:#FFD7E5"></div></div>`+LOGO.replace('class="logo"','class="logo" style="top:62px"')+STAR(890,40,140,10)+`
+<div class="tape pk" style="left:90px;top:120px;transform:rotate(-6deg)"></div>
+<div style="position:absolute;left:80px;top:185px"><span class="tag">la team de la semaine</span></div>
+<h1 style="position:absolute;left:80px;top:285px;width:930px;font-size:104px;line-height:1.05">${YH('🔥 NOM DE')}<br>${YH('LA TEAM')}</h1>`
++ME('moi_top.png',600,560,460,4)
++`<div class="widget" style="left:58px;top:720px;width:540px;transform:rotate(-2deg)"><div class="big" style="color:var(--mag)">12e → 6e</div><div class="lab">au classement des teams après le prime 5</div></div>`
++EM('🏆',80,1000,140,-10)+EM('👯',300,1040,120,8)+EM('🚀',470,560,100,10)
++`<div class="bubble me" style="position:absolute;left:58px;top:1180px;width:520px;background:var(--mag);color:#fff;transform:rotate(-2deg);font-size:36px">tag ta team en commentaire 👇</div>`+MOD);
+</script></body></html>

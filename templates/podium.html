@@ -27,6 +27,7 @@
 <div class="s grid" id="k2" style="--bg:var(--yellow)"></div>
 <div class="s grid" id="k3" style="--bg:var(--mint)"></div>
 <div class="s grid" id="k4" style="--bg:var(--lilac)"></div>
+<div class="s grid" id="k6" style="--bg:var(--blue)"></div>
 <div class="s lined" id="k5" style="--bg:var(--pink)"></div>
 <script>
 // Podium de la semaine 3 (prime 4), chiffres de l'appli (classement.sql + recap prime 4).
@@ -35,7 +36,7 @@ const D={sem:'3',prime:'4',joueurs:'114',
 ind:[['🥇','var(--gold)','Laurine49','seule en tête','165'],['🥈','#E3E6F0','cathycrtl','2e','143'],['🥉','#F6D3B8','melanielty','3e','132']],
 teams:[['🍀','var(--gold)','LES BEST','1re · 2 membres','119'],['🦄','var(--blue)','Quart Sud','2e · 2 membres','98,5'],['🌈','var(--pink)','🤩🤩🤩🤩','3e · 2 membres','93']]};
 const F='<div class="foot">Appli de fans non officielle</div>';
-const N=n=>`<div class="num" style="bottom:50px">${n}/5</div>`;
+const N=n=>`<div class="num" style="bottom:50px">${n}/6</div>`;
 const $=(id,h)=>document.getElementById(id).innerHTML=h;
 const X=150;
 const HOLES='<div class="margin"></div><div class="holes">'+[170,415,660,905,1150].map(t=>`<b style="top:${t}px"></b>`).join('')+'</div>'+LOGO.replace('class="logo"','class="logo" style="left:150px"');
@@ -71,6 +72,15 @@ $('k4',PAPER+LOGO+STAR(40,1160,96,-8)+`
 <div class="w" style="left:552px;top:636px;width:470px;height:290px"><div class="ico">🃏</div><div class="big">5</div><div class="lb">ont joué leur joker ×2</div></div>
 <div class="notif" style="left:58px;right:58px;top:960px"><div class="ic">🚀</div><div><div style="font-weight:700;font-size:36px">+41 places : Lisouille</div><div style="font-size:28px;opacity:.6">la plus belle remontée, de la 49e à la 8e place</div></div></div>`+F+N(4));
 
+const VS=(a,sa,b,sb,win)=>`<div class="notif" style="position:relative;left:auto;right:auto;margin-bottom:14px;padding:16px 30px;font-weight:800;font-size:36px;display:grid;grid-template-columns:1fr 160px 1fr"><span style="${win==='a'?'color:var(--mag)':''}">${a}${win==='a'?' 🏆':''}</span><span style="text-align:center;font-size:32px;opacity:.7">${sa!==''?sa+' – '+sb:'vs'}</span><span style="text-align:right;${win==='b'?'color:var(--mag)':''}">${b}</span></div>`;
+$('k6',PAPER+LOGO+STAR(880,60,130,12)+`
+<div style="position:absolute;left:58px;top:180px"><span class="tag">Les duels ⚔️</span></div>
+<div class="hand" style="position:absolute;left:62px;top:290px;font-size:38px;opacity:.75">+5 pts pour chaque duel gagné</div>
+<div style="position:absolute;left:58px;top:360px;font-weight:800;font-size:42px">Prime 4 : Justine gagne ses 2 duels</div>
+<div style="position:absolute;left:58px;right:58px;top:430px">${VS('Justine','38','Quef13','29','a')}${VS('Justine','38','Marie885','31','a')}</div>
+<div style="position:absolute;left:58px;top:640px;font-weight:800;font-size:42px">Prime 5 : 5 duels lancés</div>
+<div style="position:absolute;left:58px;right:58px;top:710px">${VS('Lisouille','','Maryne','')}${VS('Lisouille','','Justine','')}${VS('Laurine49','','melanielty','')}${VS('Christelle','','Floflo76','')}${VS('Christelle','','Josy','')}</div>`+F+N(5));
+
 $('k5',PAPER+HOLES+STAR(850,100,170,12)+SPARK(990,560,40)+`
 <div style="position:absolute;left:${X}px;top:250px"><span class="tag">Et toi ?</span></div>
 <h1 style="position:absolute;left:${X}px;top:370px;width:880px;font-size:96px"><span class="hl">Tu étais où dans</span><br><span class="hl">le classement ?</span></h1>
@@ -78,5 +88,5 @@ $('k5',PAPER+HOLES+STAR(850,100,170,12)+SPARK(990,560,40)+`
 <div class="chk"><i>✓</i>Ouvre Star AC' Pronos</div>
 <div class="chk"><i>✓</i>Regarde ta place</div>
 <div class="chk"><i></i>Dis-le en commentaire 👇</div></div>
-<div class="search" style="position:absolute;left:${X}px;right:58px;top:1000px">🔍 <span class="q">Star AC' Pronos</span><span style="margin-left:auto;font-size:30px;opacity:.5">lien en bio</span></div>`+F.replace('class="foot"','class="foot" style="left:150px"')+N(5));
+<div class="search" style="position:absolute;left:${X}px;right:58px;top:1000px">🔍 <span class="q">Star AC' Pronos</span><span style="margin-left:auto;font-size:30px;opacity:.5">lien en bio</span></div>`+F.replace('class="foot"','class="foot" style="left:150px"')+N(6));
 </script></body></html>

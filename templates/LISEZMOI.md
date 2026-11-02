@@ -16,3 +16,5 @@ Photos détourées (covers plus visuelles) :
 - `moi_selfie.png`, `moi_top.png`, `cut_defi.png` : photos de moi détourées. `ME('moi_top.png',x,y,largeur,rotation)`.
 - Règle : dès qu'un post parle d'un·e élève, sa photo détourée va sur la cover ; sinon une photo de moi. Plus des emojis pertinents en sticker (`EM`).
 - `covers-photos.html#nom5` est un modèle : remplacer le tableau `N` par le vrai top 3 (prénom du fichier, prénom affiché, %).
+
+- Jamais de motif à pois ni de fond à rayons (retours Tanguy du 2/11) : papiers déchirés unis pastel uniquement.

@@ -1,0 +1,82 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="da.css"><script src="kit.js"></script>
+<style>
+.grid{background-color:var(--bg);background-image:linear-gradient(rgba(150,140,200,.16) 2px,transparent 2px),linear-gradient(90deg,rgba(150,140,200,.16) 2px,transparent 2px);background-size:54px 54px}
+.lined{background-color:var(--bg);background-image:linear-gradient(transparent 62px,rgba(150,140,220,.30) 62px,rgba(150,140,220,.30) 64px,transparent 64px);background-size:100% 64px}
+.margin{position:absolute;left:118px;top:0;bottom:0;width:3px;background:rgba(240,150,190,.55)}
+.holes{position:absolute;left:34px;top:0;bottom:0;width:30px}
+.holes b{position:absolute;left:0;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:inset 0 2px 4px rgba(0,0,0,.12)}
+.card{position:absolute;background:#fff;border-radius:40px;box-shadow:0 10px 26px rgba(120,60,90,.10)}
+.w{position:absolute;background:#fff;border-radius:40px;padding:34px 36px;box-shadow:0 8px 22px rgba(120,60,90,.10)}
+.w .big{font-weight:800;font-size:96px;line-height:1}
+.w .big small{font-size:52px}
+.w .lb{font-family:H;font-size:38px;line-height:1.35;margin-top:22px}
+.notif{position:absolute;background:#fff;border-radius:34px;padding:26px 30px;display:flex;align-items:center;gap:22px;box-shadow:0 8px 22px rgba(120,60,90,.12)}
+.notif .ic{width:64px;height:64px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:34px;flex:none}
+.postit{position:absolute;background:#FFF3A6;padding:60px 52px;box-shadow:0 14px 26px rgba(90,60,40,.18)}
+.step{display:flex;align-items:center;gap:26px;font-family:H;font-size:50px;margin-bottom:46px}
+.step i{width:46px;height:46px;border:4px solid var(--ink);border-radius:8px;font-style:normal;font-family:P;font-weight:700;font-size:30px;display:grid;place-items:center;flex:none}
+.mod{position:absolute;right:52px;bottom:118px;border:3px dashed var(--mag);color:var(--mag);font-family:H;font-size:30px;padding:6px 16px;border-radius:12px;transform:rotate(4deg);background:rgba(255,255,255,.6)}
+.foot{position:absolute;left:58px;bottom:50px;font-family:H;font-size:30px;opacity:.75}
+
+.av{width:150px;height:150px;border-radius:50%;background:var(--gold);border:6px solid #fff;box-shadow:0 10px 24px rgba(90,40,50,.18);display:grid;place-items:center;font-weight:800;font-size:76px;flex:none}
+.chk{display:flex;align-items:center;gap:26px;font-weight:600;font-size:46px;margin-bottom:34px}
+.chk i{width:62px;height:62px;border:5px solid var(--ink);border-radius:12px;background:#fff;flex:none;display:grid;place-items:center;font-style:normal;color:var(--mag);font-weight:800;font-size:44px}
+.ico{position:absolute;right:28px;top:24px;font-size:46px}
+</style></head><body>
+<div class="s lined" id="k1" style="--bg:var(--blue)"></div>
+<div class="s grid" id="k2" style="--bg:var(--yellow)"></div>
+<div class="s grid" id="k3" style="--bg:var(--mint)"></div>
+<div class="s grid" id="k4" style="--bg:var(--lilac)"></div>
+<div class="s lined" id="k5" style="--bg:var(--pink)"></div>
+<script>
+// Podium de la semaine 3 (prime 4), chiffres de l'appli (classement.sql + recap prime 4).
+// node shot.js podium.html k1 k2 k3 k4 k5
+const D={sem:'3',prime:'4',joueurs:'114',
+ind:[['🥇','var(--gold)','Laurine49','seule en tête','165'],['🥈','#E3E6F0','cathycrtl','2e','143'],['🥉','#F6D3B8','melanielty','3e','132']],
+teams:[['🍀','var(--gold)','LES BEST','1re · 2 membres','119'],['🦄','var(--blue)','Quart Sud','2e · 2 membres','98,5'],['🌈','var(--pink)','🤩🤩🤩🤩','3e · 2 membres','93']]};
+const F='<div class="foot">Appli de fans non officielle</div>';
+const N=n=>`<div class="num" style="bottom:50px">${n}/5</div>`;
+const $=(id,h)=>document.getElementById(id).innerHTML=h;
+const X=150;
+const HOLES='<div class="margin"></div><div class="holes">'+[170,415,660,905,1150].map(t=>`<b style="top:${t}px"></b>`).join('')+'</div>'+LOGO.replace('class="logo"','class="logo" style="left:150px"');
+const row=([ic,bg,n,s,p])=>`<div class="notif" style="position:relative;left:auto;right:auto;margin-bottom:24px"><div class="ic" style="width:88px;height:88px;font-size:46px;background:${bg}">${ic}</div><div><div style="font-weight:700;font-size:44px;line-height:1.1">${n}</div><div class="hand" style="font-size:32px;opacity:.7;margin-top:4px">${s}</div></div><div style="margin-left:auto;font-weight:800;font-size:58px;color:var(--mag);white-space:nowrap">${p}<span style="font-size:30px"> pts</span></div></div>`;
+
+$('k1',PAPER+HOLES+STAR(850,100,170,12)+SPARK(990,560,40)+SPARK(960,1060,36)+`
+<div class="tape pk" style="left:${X}px;top:205px;width:220px;background:repeating-linear-gradient(135deg,rgba(255,170,205,.85) 0 22px,rgba(255,215,230,.85) 22px 44px)"></div>
+<div style="position:absolute;left:${X}px;top:300px"><span class="tag">Semaine ${D.sem} · prime ${D.prime}</span></div>
+<h1 style="position:absolute;left:${X}px;top:420px;width:880px;font-size:112px"><span class="hl">Le podium</span><br><span class="hl">de la semaine</span></h1>
+<div class="hand" style="position:absolute;left:${X+10}px;top:680px;font-size:52px;transform:rotate(-2deg)">qui a fait les meilleurs pronos ? ↘</div>
+<div class="card" style="left:${X}px;top:800px;width:780px;height:200px;transform:rotate(-1.5deg)">
+<div style="position:absolute;left:44px;top:34px;font-weight:800;font-size:110px;line-height:1;color:var(--mag)">${D.joueurs}</div>
+<div class="hand" style="position:absolute;left:300px;top:58px;font-size:40px;line-height:1.2">joueurs ont pronostiqué<br>le prime ${D.prime}</div></div>
+<div class="swipe" style="left:${X}px;bottom:110px">swipe →</div>`+F.replace('class="foot"','class="foot" style="left:150px"')+N(1));
+
+$('k2',PAPER+LOGO+STAR(880,60,130,10)+`
+<div style="position:absolute;left:58px;top:180px"><span class="tag">Top individuel</span></div>
+<div class="hand" style="position:absolute;left:62px;top:290px;font-size:38px;opacity:.75">classement général après le prime ${D.prime} (points cumulés)</div>
+<div style="position:absolute;left:58px;right:58px;top:380px">`+D.ind.map(row).join('')+`</div>
+<div class="bubble them" style="position:absolute;left:58px;top:930px;width:880px">Laurine49 règne seule, avec 22 pts d'avance 👑</div>`+F+N(2));
+
+$('k3',PAPER+LOGO+STAR(880,60,130,-10)+`
+<div style="position:absolute;left:58px;top:180px"><span class="tag">Top 3 des teams</span></div>
+<div class="hand" style="position:absolute;left:62px;top:290px;font-size:38px;opacity:.75">points d'une team = moyenne de ses membres</div>
+<div style="position:absolute;left:58px;right:58px;top:380px">`+D.teams.map(row).join('')+`</div>
+<div class="bubble them" style="position:absolute;left:58px;top:930px;width:880px">pas encore de team ? crée la tienne avec tes potes 💛</div>`+F+N(3));
+
+$('k4',PAPER+LOGO+STAR(40,1160,96,-8)+`
+<div class="search" style="position:absolute;left:58px;right:58px;top:160px;padding:26px 30px;font-size:40px">🔍 <span class="q">prime ${D.prime} · la semaine en chiffres</span></div>
+<div class="w" style="left:58px;top:320px;width:470px;height:290px"><div class="ico">🎯</div><div class="big">76<small> %</small></div><div class="lb">avaient Noémie gagnante du battle</div></div>
+<div class="w" style="left:552px;top:320px;width:470px;height:290px"><div class="ico">✨</div><div class="big">11</div><div class="lb">ont trouvé les 3 nommés</div></div>
+<div class="w" style="left:58px;top:636px;width:470px;height:290px"><div class="ico">⭐</div><div class="big">4</div><div class="lb">ont trouvé le top 3 des évals</div></div>
+<div class="w" style="left:552px;top:636px;width:470px;height:290px"><div class="ico">🃏</div><div class="big">5</div><div class="lb">ont joué leur joker ×2</div></div>
+<div class="notif" style="left:58px;right:58px;top:960px"><div class="ic">🚀</div><div><div style="font-weight:700;font-size:36px">+41 places : Lisouille</div><div style="font-size:28px;opacity:.6">la plus belle remontée, de la 49e à la 8e place</div></div></div>`+F+N(4));
+
+$('k5',PAPER+HOLES+STAR(850,100,170,12)+SPARK(990,560,40)+`
+<div style="position:absolute;left:${X}px;top:250px"><span class="tag">Et toi ?</span></div>
+<h1 style="position:absolute;left:${X}px;top:370px;width:880px;font-size:96px"><span class="hl">Tu étais où dans</span><br><span class="hl">le classement ?</span></h1>
+<div style="position:absolute;left:${X}px;top:660px">
+<div class="chk"><i>✓</i>Ouvre Star AC' Pronos</div>
+<div class="chk"><i>✓</i>Regarde ta place</div>
+<div class="chk"><i></i>Dis-le en commentaire 👇</div></div>
+<div class="search" style="position:absolute;left:${X}px;right:58px;top:1000px">🔍 <span class="q">Star AC' Pronos</span><span style="margin-left:auto;font-size:30px;opacity:.5">lien en bio</span></div>`+F.replace('class="foot"','class="foot" style="left:150px"')+N(5));
+</script></body></html>

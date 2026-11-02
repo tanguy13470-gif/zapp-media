@@ -1,0 +1,72 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="da.css"><script src="kit.js"></script>
+<style>
+.grid{background-color:var(--bg);background-image:linear-gradient(rgba(150,140,200,.16) 2px,transparent 2px),linear-gradient(90deg,rgba(150,140,200,.16) 2px,transparent 2px);background-size:54px 54px}
+.lined{background-color:var(--bg);background-image:linear-gradient(transparent 62px,rgba(150,140,220,.30) 62px,rgba(150,140,220,.30) 64px,transparent 64px);background-size:100% 64px}
+.margin{position:absolute;left:118px;top:0;bottom:0;width:3px;background:rgba(240,150,190,.55)}
+.holes{position:absolute;left:34px;top:0;bottom:0;width:30px}
+.holes b{position:absolute;left:0;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:inset 0 2px 4px rgba(0,0,0,.12)}
+.card{position:absolute;background:#fff;border-radius:40px;box-shadow:0 10px 26px rgba(120,60,90,.10)}
+.w{position:absolute;background:#fff;border-radius:40px;padding:34px 36px;box-shadow:0 8px 22px rgba(120,60,90,.10)}
+.w .big{font-weight:800;font-size:96px;line-height:1}
+.w .big small{font-size:52px}
+.w .lb{font-family:H;font-size:38px;line-height:1.35;margin-top:22px}
+.notif{position:absolute;background:#fff;border-radius:34px;padding:26px 30px;display:flex;align-items:center;gap:22px;box-shadow:0 8px 22px rgba(120,60,90,.12)}
+.notif .ic{width:64px;height:64px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:34px;flex:none}
+.postit{position:absolute;background:#FFF3A6;padding:60px 52px;box-shadow:0 14px 26px rgba(90,60,40,.18)}
+.step{display:flex;align-items:center;gap:26px;font-family:H;font-size:50px;margin-bottom:46px}
+.step i{width:46px;height:46px;border:4px solid var(--ink);border-radius:8px;font-style:normal;font-family:P;font-weight:700;font-size:30px;display:grid;place-items:center;flex:none}
+.mod{position:absolute;right:52px;bottom:118px;border:3px dashed var(--mag);color:var(--mag);font-family:H;font-size:30px;padding:6px 16px;border-radius:12px;transform:rotate(4deg);background:rgba(255,255,255,.6)}
+.foot{position:absolute;left:58px;bottom:50px;font-family:H;font-size:30px;opacity:.75}
+
+.av{width:150px;height:150px;border-radius:50%;background:var(--gold);border:6px solid #fff;box-shadow:0 10px 24px rgba(90,40,50,.18);display:grid;place-items:center;font-weight:800;font-size:76px;flex:none}
+</style></head><body>
+<div class="s lined" id="h1" style="--bg:var(--lilac)"></div>
+<div class="s grid" id="h2" style="--bg:var(--yellow)"></div>
+<div class="s grid" id="h3" style="--bg:var(--mint)"></div>
+<div class="s grid" id="h4" style="--bg:var(--pink)"></div>
+<script>
+// Les héros du prime (plan 2026-11-08-feed-heros), V4 dans la DA du récap (recap.html).
+// Remplir D avec les vrais résultats, MODELE=false, DUEL=false s'il n'y a pas de duel,
+// puis : node shot.js heros.html h1 h2 h3 h4
+const MODELE=true, DUEL=true;
+const D={prime:'5',p1:'pseudo_1',p1pts:'94',p2:'pseudo_2',p2pts:'88',p3:'pseudo_3',p3pts:'81',
+rem:'pseudo',rem_places:'18',rem_de:'30e',rem_a:'12e',dA:'pseudo_A',dB:'pseudo_B',dApts:'41',dBpts:'40'};
+const TOT=DUEL?4:3;
+const M=MODELE?'<div class="mod">modèle</div>':'';
+const F='<div class="foot">Appli de fans non officielle</div>';
+const N=n=>`<div class="num" style="bottom:50px">${n}/${TOT}</div>`;
+const $=(id,h)=>document.getElementById(id).innerHTML=h;
+const X=150;
+
+$('h1',PAPER+'<div class="margin"></div><div class="holes">'+[170,415,660,905,1150].map(t=>`<b style="top:${t}px"></b>`).join('')+'</div>'+LOGO.replace('class="logo"','class="logo" style="left:150px"')+STAR(850,100,170,12)+SPARK(990,560,40)+SPARK(960,1060,36)+`
+<div class="tape pk" style="left:${X}px;top:205px;width:220px;background:repeating-linear-gradient(135deg,rgba(255,170,205,.85) 0 22px,rgba(255,215,230,.85) 22px 44px)"></div>
+<div style="position:absolute;left:${X}px;top:300px"><span class="tag">prime ${D.prime} · les chiffres</span></div>
+<h1 style="position:absolute;left:${X}px;top:430px;width:880px;font-size:120px"><span class="hl">Les héros</span><br><span class="hl">du prime</span> 🏆</h1>
+<div class="card" style="left:${X}px;top:740px;width:780px;height:190px;transform:rotate(-1.5deg)">
+<div style="position:absolute;left:44px;top:40px;display:flex;gap:30px;font-size:96px;line-height:1">🥇<span>🥈</span><span>🥉</span></div>
+<div class="hand" style="position:absolute;left:500px;top:62px;font-size:52px;color:var(--mag)">tu en es ? 👀</div></div>
+<div class="swipe" style="left:${X}px;bottom:110px">swipe →</div>`+M+F.replace('class="foot"','class="foot" style="left:150px"')+N(1));
+
+const row=(ic,bg,p,pts)=>`<div class="notif" style="position:relative;left:auto;right:auto;margin-bottom:24px"><div class="ic" style="width:84px;height:84px;font-size:44px;background:${bg}">${ic}</div><div style="font-weight:700;font-size:46px">${p}</div><div style="margin-left:auto;font-weight:800;font-size:58px;color:var(--mag)">${pts}<span style="font-size:32px"> pts</span></div></div>`;
+$('h2',PAPER+LOGO+STAR(880,60,130,10)+`
+<div style="position:absolute;left:58px;top:180px"><span class="tag">le podium du prime ${D.prime}</span></div>
+<div class="hand" style="position:absolute;left:62px;top:290px;font-size:38px;opacity:.75">points du prime seulement, pas le classement général</div>
+<div style="position:absolute;left:58px;right:58px;top:380px">`+row('🥇','var(--gold)',D.p1,D.p1pts)+row('🥈','#E3E6F0',D.p2,D.p2pts)+row('🥉','#F6D3B8',D.p3,D.p3pts)+`</div>
+<div class="bubble them" style="position:absolute;left:58px;top:900px;width:820px">et toi, tu as fait combien ce prime ? 👀</div>`+M+F+N(2));
+
+$('h3',PAPER+LOGO+STAR(40,1160,96,-8)+`
+<div class="search" style="position:absolute;left:58px;right:58px;top:160px;padding:26px 30px;font-size:40px">🔍 <span class="q">la plus belle remontée</span></div>
+<div class="w" style="left:58px;top:320px;width:964px;height:300px"><div class="big" style="color:var(--mag)">+${D.rem_places}<small> places</small></div><div class="lb">au classement général en un seul prime</div></div>
+<div class="w" style="left:58px;top:650px;width:470px;height:300px"><div class="big">${D.rem_de}</div><div class="lb">avant le prime ${D.prime}</div></div>
+<div class="w" style="left:552px;top:650px;width:470px;height:300px"><div class="big">${D.rem_a}</div><div class="lb">après le prime ${D.prime}</div></div>
+<div class="notif" style="left:58px;right:58px;top:985px"><div class="ic">↗️</div><div><div style="font-weight:700;font-size:36px">Plus belle remontée : ${D.rem}</div><div style="font-size:28px;opacity:.6">de la ${D.rem_de} à la ${D.rem_a} au général</div></div></div>`+M+F+N(3));
+
+if(DUEL)$('h4',PAPER+LOGO+STAR(860,1000,140,16)+SPARK(980,120,40)+`
+<div style="position:absolute;left:58px;top:180px"><span class="tag">le duel le plus serré ⚔️</span></div>
+<div class="w" style="left:58px;top:310px;width:964px;height:300px;display:flex;align-items:center;justify-content:space-between;padding:0 60px">
+<div><div style="font-weight:800;font-size:52px">${D.dA}</div><div class="big" style="margin-top:14px">${D.dApts}<small> pts</small></div></div>
+<div style="font-weight:800;font-size:64px;color:var(--mag)">VS</div>
+<div style="text-align:right"><div style="font-weight:800;font-size:52px">${D.dB}</div><div class="big" style="margin-top:14px">${D.dBpts}<small> pts</small></div></div></div>
+<div class="search" style="position:absolute;left:58px;right:58px;top:680px">🔍 <span class="q">Star AC' Pronos</span><span style="margin-left:auto;font-size:30px;opacity:.5">lien en bio</span></div>
+<div class="bubble them" style="position:absolute;left:58px;top:840px;width:820px">et toi, tu étais où ce soir ? 👀</div>`+M+F+N(4));
+</script></body></html>

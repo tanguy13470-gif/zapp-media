@@ -1,0 +1,80 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="da.css"><script src="kit.js"></script>
+<style>
+.lined{background-color:var(--bg);background-image:linear-gradient(90deg,transparent 118px,rgba(232,120,160,.35) 118px,rgba(232,120,160,.35) 121px,transparent 121px),repeating-linear-gradient(transparent 0 62px,rgba(120,150,220,.22) 62px 64px)}
+.grid{background-color:var(--bg);background-image:linear-gradient(rgba(150,140,200,.16) 2px,transparent 2px),linear-gradient(90deg,rgba(150,140,200,.16) 2px,transparent 2px);background-size:54px 54px}
+.cv{font-family:C;font-weight:700}
+.postit{position:absolute;background:#FFF3A6;padding:40px 44px;box-shadow:0 14px 26px rgba(90,60,40,.18)}
+.widget{background:#fff;border-radius:40px;padding:34px 36px;box-shadow:0 10px 26px rgba(110,80,140,.13);position:absolute}
+.widget .big{font-weight:800;font-size:110px;line-height:1;letter-spacing:-2px}
+.widget .lab{font-family:H;font-size:40px;margin-top:10px}
+.notif{background:#fff;border-radius:34px;padding:24px 30px;display:flex;align-items:center;gap:22px;box-shadow:0 8px 22px rgba(120,60,90,.12);margin-bottom:22px}
+.notif .ic{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;font-size:40px;font-weight:800;background:var(--gold)}
+.notif .pc{margin-left:auto;font-weight:800;font-size:54px;color:var(--mag)}
+.chk{display:flex;align-items:center;gap:26px;font-family:H;font-size:54px;min-height:104px;line-height:1.1}
+.chk b{flex:none;width:52px;height:52px;border:4px solid var(--ink);border-radius:10px;display:grid;place-items:center;font-family:P;font-size:36px;background:#fff}
+.mod{position:absolute;right:52px;bottom:130px;transform:rotate(6deg);background:#fff;border:3px dashed var(--mag);color:var(--mag);font-family:H;font-size:30px;padding:6px 18px;border-radius:12px}
+.av{width:150px;height:150px;border-radius:50%;background:var(--gold);border:6px solid #fff;box-shadow:0 10px 24px rgba(90,40,50,.2);display:grid;place-items:center;font-weight:800;font-size:76px}
+.holes{position:absolute;left:34px;top:0;bottom:0;width:40px;display:flex;flex-direction:column;justify-content:space-around;padding:60px 0}
+.holes i{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:inset 0 3px 4px rgba(0,0,0,.12)}
+.em{position:absolute;line-height:1;filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 12px 14px rgba(90,40,50,.25))}
+.rays{position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 50% 46%,rgba(255,255,255,.55) 0 7deg,rgba(255,255,255,0) 7deg 15deg)}
+.torn{position:absolute;box-shadow:none}
+.tw{position:absolute;filter:drop-shadow(0 10px 16px rgba(90,60,70,.22))}
+.tw>div{width:100%;height:100%}
+.dots{background-image:radial-gradient(rgba(179,45,114,.28) 7px,transparent 8px);background-size:46px 46px}
+.stripes{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.7) 0 18px,rgba(255,255,255,0) 18px 36px)}
+.scribble{position:absolute;stroke:var(--mag);fill:none;stroke-width:7;stroke-linecap:round}
+</style></head><body>
+<div id="all"></div>
+<script>
+function tornPoly(w,h,seed){let r=seed;const rnd=()=>{r=(r*9301+49297)%233280;return r/233280};const pts=[];
+ for(let x=0;x<=w;x+=34)pts.push(`${x}px ${Math.round(rnd()*14)}px`);
+ for(let y=0;y<=h;y+=40)pts.push(`${w-Math.round(rnd()*10)}px ${y}px`);
+ for(let x=w;x>=0;x-=34)pts.push(`${x}px ${h-Math.round(rnd()*16)}px`);
+ for(let y=h;y>=0;y-=40)pts.push(`${Math.round(rnd()*10)}px ${y}px`);
+ return `polygon(${pts.join(',')})`}
+const TORN=(x,y,w,h,bg,rot,seed,extra)=>`<div class="tw" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;transform:rotate(${rot}deg)"><div style="background:${bg};clip-path:${tornPoly(w,h,seed)};${extra||''}"></div></div>`;
+const SQUIG=(x,y,w,rot)=>`<svg class="scribble" style="left:${x}px;top:${y}px;width:${w}px;height:50px;transform:rotate(${rot}deg)" viewBox="0 0 300 50"><path d="M5 25 Q30 0 55 25 T105 25 T155 25 T205 25 T255 25 T295 25"/></svg>`;
+const HEART=(x,y,sz,rot)=>`<div class="em" style="left:${x}px;top:${y}px;font-size:${sz}px;transform:rotate(${rot}deg)">💖</div>`;
+const FOOT=(n,t)=>`<div class="num">${n}/${t}</div>`;
+const MOD=`<div class="mod">modèle</div>`;
+const slides={};
+const mk=(id,cls,bg,html)=>{const d=document.createElement('div');d.className='s '+cls;d.id=id;d.style.setProperty('--bg',bg);d.innerHTML=PAPER+html;document.getElementById('all').appendChild(d)};
+const SW=`<div class="swipe">glisse →</div>`;
+
+/* Covers avec photos (V2, sobre) : une photo détourée calée en bas, contre le bord, 1 ou 2 emojis max.
+   Élèves : candidats/<prénom sans accent>.png (source : site de l'appli /candidates/<prénom>.jpg). */
+const PB=(f,side,off,w,extra)=>`<img src="${f}" style="position:absolute;bottom:0;${side}:${off}px;width:${w}px;filter:drop-shadow(0 10px 18px rgba(60,40,90,.22));${extra||''}">`;
+const C=n=>`candidats/${n}.png`;
+const EM=(e,x,y,s,r)=>`<div class="em" style="left:${x}px;top:${y}px;font-size:${s}px;transform:rotate(${r}deg)">${e}</div>`;
+const NAME=(t,side,off,bottom,r)=>`<div style="position:absolute;${side}:${off}px;bottom:${bottom}px;transform:rotate(${r}deg);background:#fff;border-radius:16px;padding:6px 20px;font-weight:800;font-size:36px;box-shadow:0 6px 14px rgba(90,40,50,.16)">${t}</div>`;
+const SWC=`<div class="swipe" style="left:50%;transform:translateX(-50%)">glisse →</div>`;
+
+/* 2. Nommés prime 5 (Reel + TikTok) : MODÈLE. Les photos des 3 vrais nommés-par-les-joueurs
+   s'ajoutent quand la deadline est passée (remplir N, sinon aucune photo n'est affichée). */
+/* Variables (champs du Studio n1/p1, n2/p2, n3/p3) : la photo suit le prénom automatiquement. Valeurs d'exemple ci-dessous. */
+const V={nb:'93',n1:'Amel',p1:'85',n2:'Melina',p2:'63',n3:'Kylian',p3:'43',n4:'Félix',p4:'43'};
+const slug=x=>x.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
+const N=[[V.n1,V.p1],[V.n2,V.p2],[V.n3,V.p3],[V.n4,V.p4]].map(([n,p])=>[slug(n),n,p+' %']);
+const ROW=(r,i,top)=>`<div style="position:absolute;left:58px;right:58px;top:${top+i*118}px;height:108px;background:#fff;border-radius:30px;display:flex;align-items:center;gap:22px;padding:0 34px 0 ${r[3]?'14px':'34px'};box-shadow:0 8px 20px rgba(120,60,90,.12)">${r[3]?`<img src="candidats/${r[3]}.png" style="width:92px;height:92px;border-radius:50%;object-fit:cover;object-position:top;background:#FFF1B4;border:4px solid #FFF1B4">`:`<div style="width:70px;height:70px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:34px;background:#FFF1B4">${r[0]}</div>`}<div style="font-weight:800;font-size:42px">${r[1]}</div><div style="margin-left:auto;font-weight:800;font-size:44px;color:var(--mag)">${r[2]}</div></div>`;
+const NR=N.length?N.map((x,i)=>[i+1,x[1],x[2],x[0]]):[[1,'Prénom 1','64 %'],[2,'Prénom 2','51 %'],[3,'Prénom 3','38 %']];
+mk('nom5','grid','var(--pink)',LOGO+STAR(880,60,140,12)+`
+<div style="position:absolute;left:58px;top:170px"><span class="tag">prime 5 · les nommés</span></div>
+<h1 style="position:absolute;left:58px;top:270px;width:960px;font-size:96px;line-height:1.1"><span class="hl">Qui les joueurs</span><br><span class="hl">voient nommés ?</span></h1>`
++EM('🔮',880,420,100,10)
++`<div class="cv" style="position:absolute;left:66px;top:560px;font-size:56px;transform:rotate(-2deg)">${V.nb} joueurs ont voté, voici leur top 3 👇</div>`
++NR.map((r,i)=>ROW(r,i,670)).join('')
++`<div class="hand" style="position:absolute;left:640px;top:1000px;font-size:40px;color:var(--mag);transform:rotate(-4deg);background:#FFF3A6;padding:2px 16px;border-radius:8px;box-shadow:0 6px 12px rgba(90,60,40,.15)">ex aequo !</div><div class="bubble me" style="position:absolute;right:58px;top:1190px;width:560px">tu avais vu juste, toi ?</div>`);
+
+
+const CK=(n,l,top)=>`<div style="position:absolute;left:58px;right:58px;top:${top}px;height:128px;background:#fff;border-radius:30px;display:flex;align-items:center;gap:24px;padding:0 34px 0 16px;box-shadow:0 8px 20px rgba(120,60,90,.12)"><img src="candidats/${slug(n)}.png" style="width:100px;height:100px;border-radius:50%;object-fit:cover;object-position:top;background:#FFF1B4;border:4px solid #FFF1B4"><div><div style="font-weight:800;font-size:46px;line-height:1.1">${n} <span style="color:var(--mag)">✓</span></div><div class="hand" style="font-size:36px">${l}</div></div></div>`;
+mk('verdict','grid','var(--blue)',LOGO+STAR(880,70,140,12)+`
+<div style="position:absolute;left:58px;top:170px"><span class="tag">et la vraie liste ?</span></div>
+<h1 style="position:absolute;left:58px;top:270px;width:960px;font-size:110px;line-height:1.1"><span class="hl">Le verdict 🍿</span></h1>
+<div class="cv" style="position:absolute;left:66px;top:440px;font-size:54px;transform:rotate(-2deg)">les vrais nommés du prime 5 👇</div>`
++CK('Amel','85 % des joueurs l\'avaient vue venir',560)+CK('Félix','43 % l\'avaient vu',708)+CK('Morgan','seulement 14 % 😱',856)
++`<div class="bubble them" style="position:absolute;left:58px;top:1020px;width:auto;max-width:964px;font-size:40px;white-space:nowrap">tu avais vu juste ? dis-le en commentaire 👇</div>
+<div class="search" style="position:absolute;left:58px;right:58px;top:1170px">🔍 <span>joue au prime 5 <span class="q">commente STAR AC</span></span></div>
+<div style="position:absolute;left:58px;bottom:28px;font-family:H;font-size:30px;opacity:.75">Appli de fans non officielle</div>`);
+
+</script></body></html>

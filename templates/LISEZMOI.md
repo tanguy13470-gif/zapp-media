@@ -10,3 +10,11 @@ Règles de DA (validées par Clara) :
 - Photos : dans un polaroïd, une bulle ronde ou avec un contour net. JAMAIS d'effet flou ou de bords fondus.
 - Jamais le style « journal papier éditorial / presse ».
 - Ne plus utiliser la photo du micro (Gemini « Micro star ac »).
+
+Photos détourées (covers plus visuelles) :
+- `candidats/<prénom sans accent>.png` : les 17 élèves, détourés avec contour blanc, récupérés depuis le site de l'appli (`https://star-academy-clarou.netlify.app/candidates/<prénom>.jpg`). Dans `covers-photos.html`, `P('noemie',x,y,largeur,rotation)`.
+- `moi_selfie.png`, `moi_top.png`, `cut_defi.png` : photos de moi détourées. `ME('moi_top.png',x,y,largeur,rotation)`.
+- Règle : dès qu'un post parle d'un·e élève, sa photo détourée va sur la cover ; sinon une photo de moi. Plus des emojis pertinents en sticker (`EM`).
+- `covers-photos.html#nom5` est un modèle : remplacer le tableau `N` par le vrai top 3 (prénom du fichier, prénom affiché, %).
+
+- Jamais de motif à pois ni de fond à rayons (retours Tanguy du 2/11) : papiers déchirés unis pastel uniquement.

@@ -1,0 +1,65 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="da.css"><script src="kit.js"></script>
+<style>
+.lined{background-color:var(--bg);background-image:linear-gradient(90deg,transparent 118px,rgba(232,120,160,.35) 118px,rgba(232,120,160,.35) 121px,transparent 121px),repeating-linear-gradient(transparent 0 62px,rgba(120,150,220,.22) 62px 64px)}
+.grid{background-color:var(--bg);background-image:linear-gradient(rgba(150,140,200,.16) 2px,transparent 2px),linear-gradient(90deg,rgba(150,140,200,.16) 2px,transparent 2px);background-size:54px 54px}
+.cv{font-family:C;font-weight:700}
+.postit{position:absolute;background:#FFF3A6;padding:40px 44px;box-shadow:0 14px 26px rgba(90,60,40,.18)}
+.widget{background:#fff;border-radius:40px;padding:34px 36px;box-shadow:0 10px 26px rgba(110,80,140,.13);position:absolute}
+.widget .big{font-weight:800;font-size:110px;line-height:1;letter-spacing:-2px}
+.widget .lab{font-family:H;font-size:40px;margin-top:10px}
+.notif{background:#fff;border-radius:34px;padding:24px 30px;display:flex;align-items:center;gap:22px;box-shadow:0 8px 22px rgba(120,60,90,.12);margin-bottom:22px}
+.notif .ic{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;font-size:40px;font-weight:800;background:var(--gold)}
+.notif .pc{margin-left:auto;font-weight:800;font-size:54px;color:var(--mag)}
+.chk{display:flex;align-items:center;gap:26px;font-family:H;font-size:54px;min-height:104px;line-height:1.1}
+.chk b{flex:none;width:52px;height:52px;border:4px solid var(--ink);border-radius:10px;display:grid;place-items:center;font-family:P;font-size:36px;background:#fff}
+.mod{position:absolute;right:52px;bottom:130px;transform:rotate(6deg);background:#fff;border:3px dashed var(--mag);color:var(--mag);font-family:H;font-size:30px;padding:6px 18px;border-radius:12px}
+.av{width:150px;height:150px;border-radius:50%;background:var(--gold);border:6px solid #fff;box-shadow:0 10px 24px rgba(90,40,50,.2);display:grid;place-items:center;font-weight:800;font-size:76px}
+.holes{position:absolute;left:34px;top:0;bottom:0;width:40px;display:flex;flex-direction:column;justify-content:space-around;padding:60px 0}
+.holes i{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:inset 0 3px 4px rgba(0,0,0,.12)}
+.em{position:absolute;line-height:1;filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 12px 14px rgba(90,40,50,.25))}
+.rays{position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 50% 46%,rgba(255,255,255,.55) 0 7deg,rgba(255,255,255,0) 7deg 15deg)}
+.torn{position:absolute;box-shadow:none}
+.tw{position:absolute;filter:drop-shadow(0 10px 16px rgba(90,60,70,.22))}
+.tw>div{width:100%;height:100%}
+.dots{background-image:radial-gradient(rgba(179,45,114,.28) 7px,transparent 8px);background-size:46px 46px}
+.stripes{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.7) 0 18px,rgba(255,255,255,0) 18px 36px)}
+.scribble{position:absolute;stroke:var(--mag);fill:none;stroke-width:7;stroke-linecap:round}
+</style></head><body>
+<div id="all"></div>
+<script>
+
+function tornPoly(w,h,seed){let r=seed;const rnd=()=>{r=(r*9301+49297)%233280;return r/233280};const pts=[];
+ for(let x=0;x<=w;x+=34)pts.push(`${x}px ${Math.round(rnd()*14)}px`);
+ for(let y=0;y<=h;y+=40)pts.push(`${w-Math.round(rnd()*10)}px ${y}px`);
+ for(let x=w;x>=0;x-=34)pts.push(`${x}px ${h-Math.round(rnd()*16)}px`);
+ for(let y=h;y>=0;y-=40)pts.push(`${Math.round(rnd()*10)}px ${y}px`);
+ return `polygon(${pts.join(',')})`}
+const TORN=(x,y,w,h,bg,rot,seed,extra)=>`<div class="tw" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;transform:rotate(${rot}deg)"><div style="background:${bg};clip-path:${tornPoly(w,h,seed)};${extra||''}"></div></div>`;
+const SQUIG=(x,y,w,rot)=>`<svg class="scribble" style="left:${x}px;top:${y}px;width:${w}px;height:50px;transform:rotate(${rot}deg)" viewBox="0 0 300 50"><path d="M5 25 Q30 0 55 25 T105 25 T155 25 T205 25 T255 25 T295 25"/></svg>`;
+const HEART=(x,y,sz,rot)=>`<div class="em" style="left:${x}px;top:${y}px;font-size:${sz}px;transform:rotate(${rot}deg)">💖</div>`;
+const FOOT=(n,t)=>`<div class="num">${n}/${t}</div>`;
+const MOD=`<div class="mod">modèle</div>`;
+const slides={};
+const mk=(id,cls,bg,html)=>{const d=document.createElement('div');d.className='s '+cls;d.id=id;d.style.setProperty('--bg',bg);d.innerHTML=PAPER+html;document.getElementById('all').appendChild(d)};
+const SW=`<div class="swipe">glisse →</div>`;
+
+/* Story « le classement bouge » : remplir D puis rendre #classement en 1080x1920.
+   D.etape : texte du tag (ex. 'prime 5 · après les nommés') ; D.top : 5 lignes [rang, pseudo, points, évolution de rang (+3, -1, 0)] ;
+   D.remontada : {p: pseudo, de: ancien rang, a: nouveau rang, pts: points gagnés} ou null ; D.ref : 'classement général, au 4/11 21h'. */
+const D=window.D||{etape:'prime 5 · après les nommés',titre:'Le classement<br>bouge !',top:[[1,'Laurine49',165,0],[2,'cathycrtl',143,0],[3,'melanielty',132,0],[4,'Clararbt',120,1],[5,'alexane1927',118,-1]],remontada:{p:'Pseudo',de:42,a:17,pts:16},ref:'classement général, au 4/11'};
+const AR=d=>d>0?`<span style="color:#2E9E6B">▲ ${d}</span>`:d<0?`<span style="color:var(--mag)">▼ ${-d}</span>`:`<span style="opacity:.45">=</span>`;
+const ROWC=(x)=>`<div style="display:flex;align-items:center;gap:22px;background:#fff;border-radius:30px;padding:16px 30px;margin-bottom:14px;box-shadow:0 8px 20px rgba(120,60,90,.12)"><div style="width:66px;height:66px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:34px;background:#FFF1B4;flex:none">${x[0]}</div><div style="font-weight:800;font-size:42px">${x[1]}</div><div style="margin-left:auto;font-weight:800;font-size:40px;color:var(--mag)">${x[2]} pts</div><div style="width:110px;text-align:right;font-weight:800;font-size:34px">${AR(x[3])}</div></div>`;
+mk('classement','','#EFE6FF',
+ TORN(30,140,1020,430,'#fff',-1.2,11,'')+TORN(0,600,1080,660,'#FFF1B4',0,23,'')+
+ `<div class="tw" style="left:0;top:1290px;width:1080px;height:630px"><div style="clip-path:${tornPoly(1080,630,5)};background-color:#FFD7E5;width:100%;height:100%"></div></div>`+
+ LOGO.replace('class="logo"','class="logo" style="top:62px"')+STAR(880,40,150,14)+
+ `<div class="tape pk" style="left:90px;top:128px;transform:rotate(-6deg)"></div>
+ <div style="position:absolute;left:80px;top:200px"><span class="tag">${D.etape}</span></div>
+ <h1 style="position:absolute;left:80px;top:290px;width:900px;font-size:96px;line-height:1.05">${D.titre}</h1>
+ <div class="hand" style="position:absolute;left:84px;top:500px;font-size:40px;color:var(--mag)">${D.ref}</div>
+ <div style="position:absolute;left:70px;top:640px;font-weight:800;font-size:46px">Le top 5 📊</div>
+ <div style="position:absolute;left:70px;right:70px;top:725px">${D.top.map(ROWC).join('')}</div>`+
+ (D.remontada?`<div style="position:absolute;left:70px;top:1350px;font-weight:800;font-size:46px">La grosse remontada 🚀</div>
+ <div style="position:absolute;left:70px;right:70px;top:1440px;background:#fff;border-radius:30px;padding:22px 34px;box-shadow:0 8px 20px rgba(120,60,90,.12)"><div style="font-weight:800;font-size:46px">${D.remontada.p}</div><div style="font-weight:800;font-size:60px;color:var(--mag);margin-top:6px">${D.remontada.de}e → ${D.remontada.a}e <span style="font-size:38px;color:var(--ink);font-weight:600">(+${D.remontada.pts} pts)</span></div></div><div class="hand" style="position:absolute;left:74px;top:1660px;font-size:46px">et toi, tu es où ? 👀 (lien en bio)</div>`:
+ `<div class="hand" style="position:absolute;left:74px;top:1400px;font-size:48px">et toi, tu es où ? 👀 (lien en bio)</div>`));
+</script></body></html>
